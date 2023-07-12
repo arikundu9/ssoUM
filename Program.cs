@@ -3,6 +3,7 @@ using ssoUM.BAL;
 using ssoUM.DAL;
 using ssoUM.DAL.Interfaces;
 using ssoUM.BAL.Interface;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +37,12 @@ builder.Services.AddTransient<IAppService, AppService>();
 // builder.Services.AddTransient<ITransactionRepo, TransactionRepo>();
 
 builder.Services.AddControllers();
+builder.Services.AddApiVersioning(x =>
+{
+    x.DefaultApiVersion = new ApiVersion(1, 0);
+    x.AssumeDefaultVersionWhenUnspecified = true;
+    x.ReportApiVersions = true;
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
