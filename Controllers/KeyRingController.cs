@@ -1,7 +1,10 @@
+using Microsoft.AspNetCore.Mvc;
+
 namespace ssoUM.Controllers;
 
 [ApiController]
-[Route("api/v1/[controller]")]
+[Route("api/v{version:apiVersion}/[controller]")]
+[ApiVersion("1.0")]
 public class KeyRingController : ControllerBase
 {
     private readonly ILogger<KeyRingController> _logger;
