@@ -13,7 +13,6 @@ public class KeyRingController : ControllerBase
         _logger = logger;
     }
 
-    [MapToApiVersion("1.0")]
     [HttpGet]
     public string Get()
     {
