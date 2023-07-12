@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace ssoUM.DAL.Enums
 {
-    public enum APIResponseStatus
+    public enum APIResponseCode
     {
         Success = 1,
         Warning = 2,

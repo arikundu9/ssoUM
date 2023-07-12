@@ -1,12 +1,21 @@
 using ssoUM.DAL.Enums;
 
 namespace ssoUM.Helpers {
-    public class ServiceResponse<T> 
+    public class ApiResponse<T>
     {
-        public T? result { get; set; }          
-        public APIResponseStatus apiResponseStatus { get; set; }
-        public string Message { get; set; }
+        public Success success { get; set; }
+        public T? data { get; set; }
+        public Error[]? error { get; set; }
     }
 
-    
+    public class Error
+    {
+        APIResponseCode? code;
+        string? message;
+    }
+    public class Success
+    {
+        APIResponseCode code;
+        string? message;
+    }
 }
