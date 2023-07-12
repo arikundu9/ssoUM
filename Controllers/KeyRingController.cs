@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using ssoUM.BAL.Interface;
 
 namespace ssoUM.Controllers;
 
@@ -8,7 +9,7 @@ public class KeyRingController : ControllerBase
 {
     private readonly ILogger<KeyRingController> _logger;
 
-    public KeyRingController(ILogger<KeyRingController> logger)
+    public KeyRingController(ILogger<KeyRingController> logger,IKeyService keyService)
     {
         _logger = logger;
     }
