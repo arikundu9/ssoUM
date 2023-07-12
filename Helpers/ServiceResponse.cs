@@ -3,19 +3,10 @@ using ssoUM.DAL.Enums;
 namespace ssoUM.Helpers {
     public class ApiResponse<T>
     {
-        public Success success { get; set; }
-        public T? data { get; set; }
-        public Error[]? error { get; set; }
-    }
-
-    public class Error
-    {
-        APIResponseCode? code;
-        string? message;
-    }
-    public class Success
-    {
+        public Boolean success { get; set; }
         APIResponseCode code;
-        string? message;
+        string message;
+        public T? data { get; set; }
+        public string[]? error { get; set; }
     }
 }
