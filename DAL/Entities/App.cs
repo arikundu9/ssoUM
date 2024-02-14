@@ -6,19 +6,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ssoUM.DAL.Entities;
 
-[Table("App")]
+[Table("app")]
 public partial class App
 {
     [Key]
-    [Column("AID")]
+    [Column("aid")]
     public long Aid { get; set; }
 
-    [Column("redirectUrl")]
+    [Column("redirecturl")]
     [StringLength(100)]
-    [Unicode(false)]
-    public string RedirectUrl { get; set; } = null!;
+    public string Redirecturl { get; set; } = null!;
 
-    [Column("JID")]
+    [Column("jid")]
     public long? Jid { get; set; }
 
     [ForeignKey("Jid")]

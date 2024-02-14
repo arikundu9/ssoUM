@@ -10,15 +10,14 @@ namespace ssoUM.DAL.Entities;
 public partial class Jwt
 {
     [Key]
-    [Column("JID")]
+    [Column("jid")]
     public long Jid { get; set; }
 
     [Column("description")]
     [StringLength(30)]
-    [Unicode(false)]
     public string Description { get; set; } = null!;
 
-    [Column("KID")]
+    [Column("kid")]
     public long? Kid { get; set; }
 
     [InverseProperty("JidNavigation")]

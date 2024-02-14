@@ -10,18 +10,17 @@ namespace ssoUM.DAL.Entities;
 public partial class Role
 {
     [Key]
-    [Column("RID")]
+    [Column("rid")]
     public long Rid { get; set; }
 
-    [Column("R_PID")]
+    [Column("r_pid")]
     public long? RPid { get; set; }
 
     [Column("role_code")]
     [StringLength(30)]
-    [Unicode(false)]
     public string RoleCode { get; set; } = null!;
 
-    [Column("AID")]
+    [Column("aid")]
     public long? Aid { get; set; }
 
     [ForeignKey("Aid")]

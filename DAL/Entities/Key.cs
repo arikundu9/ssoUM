@@ -10,23 +10,20 @@ namespace ssoUM.DAL.Entities;
 public partial class Key
 {
     [Key]
-    [Column("KID")]
+    [Column("kid")]
     public long Kid { get; set; }
 
     [Column("type")]
-    public bool Type { get; set; }
+    public short Type { get; set; }
 
-    [Column("private_key")]
-    [Unicode(false)]
+    [Column("private_key", TypeName = "character varying")]
     public string PrivateKey { get; set; } = null!;
 
-    [Column("public_key")]
-    [Unicode(false)]
+    [Column("public_key", TypeName = "character varying")]
     public string? PublicKey { get; set; }
 
     [Column("algo")]
     [StringLength(30)]
-    [Unicode(false)]
     public string Algo { get; set; } = null!;
 
     [InverseProperty("KidNavigation")]
