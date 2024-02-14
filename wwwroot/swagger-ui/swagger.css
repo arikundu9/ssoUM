@@ -1,0 +1,130 @@
+:root {
+    --prime_aqua: #5f5f5fc8;
+    --prime_blue: #9f8c00;
+}
+.swagger-ui .topbar {
+    background-color: var(--prime_blue);
+    box-shadow: 0 2px 4px -1px #0003, 0 4px 5px #00000024, 0 1px 10px #0000001f;
+}
+.swagger-ui .scheme-container {
+    padding: 0 0 5px 0;
+    background-color: transparent;
+}
+.swagger-ui .info {
+    margin: 25px 0;
+}
+.swagger-ui .info .title {
+    color: var(--prime_blue);
+    font-size: 28px;
+}
+.swagger-ui .topbar .download-url-wrapper .select-label select {
+    border: 1px solid #363636;
+    background-color: #ffffff4a;
+}
+.swagger-ui .info a {
+    color: #1798ef;
+}
+.swagger-ui .opblock .opblock-summary-description {
+    color: #9f6800;
+}
+.swagger-ui .opblock .opblock-summary {
+    padding: 1px;
+}
+.swagger-ui .opblock-tag {
+    margin: 0px;
+    /* margin-top: 7px; */
+    /* border: 1px solid #c1c3c7; */
+    font-size: 18px;
+    border-radius: 7px 7px 0 0;
+    background-color: #fffcf7;
+}
+
+.swagger-ui .filter .operation-filter-input {
+    border-width: 1px;
+}
+
+.swagger-ui h3 + .no-margin {
+    padding: 15px;
+    /* border: 1px solid #c1c3c7; */
+    border-top-width: 0px;
+}
+.swagger-ui .execute-wrapper {
+    padding: 6px 20px;
+    padding-top: 0;
+}
+
+.swagger-ui .btn {
+    border-radius: 15px;
+}
+
+.swagger-ui .execute-wrapper .btn {
+    padding: 5px;
+}
+
+.swagger-ui .responses-inner {
+    padding: 10px;
+}
+
+.swagger-ui .table-container {
+    padding: 10px;
+}
+.swagger-ui .body-param-options .body-param-edit {
+    padding: 0px;
+}
+
+.topbar-wrapper img[alt="Swagger UI"],
+.topbar-wrapper span {
+    visibility: hidden;
+}
+
+.topbar-wrapper .link:after {
+    content: "ssoUM";
+    color: #ffffff6b;
+    visibility: visible;
+    display: block;
+    position: absolute;
+    padding: 15px;
+    font-size: xxx-large;
+    font-family: monospace;
+}
+
+.swagger-ui .markdown p {
+    margin: 0px;
+}
+
+.opblock-tag-section {
+    margin-bottom: 7px;
+    border: 1px solid #c1c3c7;
+    border-radius: 7px;
+}
+
+.swagger-ui input[type="text"] {
+    padding: 4px;
+    border-radius: 0px;
+}
+.swagger-ui input[type="text"]:focus-visible {
+    outline: none;
+    border: 1px solid var(--prime_blue);
+}
+/* width */
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f100;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--prime_aqua);
+    border-radius: 3px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--prime_aqua);
+    filter: brightness(0.85);
+}
