@@ -45,4 +45,3 @@
     </ItemGroup>
 
 </Project>
-<!-- dotnet ef dbcontext scaffold "Name=ConnectionStrings:ssoUMDBConnection" Microsoft.EntityFrameworkCore.SqlServer 2-context ssoUMDBContext 2-context-dir DAL -o DAL/Entities 2-data-annotations 2-force -->
