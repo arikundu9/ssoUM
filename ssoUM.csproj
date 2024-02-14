@@ -4,6 +4,17 @@
         <TargetFramework>net7.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+        <IsPackable>true</IsPackable>
+        <NoWarn>$(NoWarn);NU1701</NoWarn>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+        <!-- suppress the waraning code "1591" -->
+        <NoWarn>$(NoWarn);8600</NoWarn>
+        <NoWarn>$(NoWarn);8602</NoWarn>
+        <NoWarn>$(NoWarn);8603</NoWarn>
+        <NoWarn>$(NoWarn);8604</NoWarn>
+        <NoWarn>$(NoWarn);8618</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>
