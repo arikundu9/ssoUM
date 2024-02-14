@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 /*------Database Connection------*/
 builder.Services.AddDbContext<ssoUMDBContext>(options =>
     options.UseNpgsql(
-        builder.Configuration.GetConnectionString("ssoUMDBConnection"),
+        builder.Configuration.GetConnectionString("ssoUMDBConnection_PG"),
         ////options => options.CommandTimeout(999)
         options => options.EnableRetryOnFailure(10, TimeSpan.FromSeconds(5), null)
     ),
