@@ -3,13 +3,14 @@ using ssoUM.BAL;
 using ssoUM.DAL;
 using ssoUM.DAL.Interfaces;
 using ssoUM.BAL.Interface;
-using Microsoft.AspNetCore.Mvc;
+using Asp.Versioning;
+// using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
 /*------Database Connection------*/
 builder.Services.AddDbContext<ssoUMDBContext>(options =>
-    options.UseSqlServer(
+    options.UseNpgsql(
         builder.Configuration.GetConnectionString("ssoUMDBConnection"),
         ////options => options.CommandTimeout(999)
         options => options.EnableRetryOnFailure(10, TimeSpan.FromSeconds(5), null)
@@ -37,12 +38,25 @@ builder.Services.AddTransient<IAppService, AppService>();
 // builder.Services.AddTransient<ITransactionRepo, TransactionRepo>();
 
 builder.Services.AddControllers();
-builder.Services.AddApiVersioning(x =>
+var apiVersioningBuilder = builder.Services.AddApiVersioning(x =>
 {
     x.DefaultApiVersion = new ApiVersion(1, 0);
     x.AssumeDefaultVersionWhenUnspecified = true;
     x.ReportApiVersions = true;
+    x.ApiVersionReader = ApiVersionReader.Combine(new UrlSegmentApiVersionReader(),
+                                    new HeaderApiVersionReader("x-api-version"),
+                                    new MediaTypeApiVersionReader("x-api-version"));
 });
+apiVersioningBuilder.AddApiExplorer(options =>
+{
+    // add the versioned api explorer, which also adds IApiVersionDescriptionProvider service
+    // note: the specified format code will format the version as "'v'major[.minor][-status]"
+    options.GroupNameFormat = "'v'VVV";
+
+    // note: this option is only necessary when versioning by url segment. the SubstitutionFormat
+    // can also be used to control the format of the API version in route templates
+    options.SubstituteApiVersionInUrl = true;
+}); // Nuget Package: Asp.Versioning.Mvc.ApiExplorer
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

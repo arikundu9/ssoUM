@@ -81,7 +81,7 @@ namespace ssoUM.Authentication
             catch (Exception ex)
             {
                 _logger.LogError(ex, ex.Message);
-                throw ex;
+                throw;
             }
         }
 
@@ -193,7 +193,7 @@ namespace ssoUM.Authentication
             catch (Exception ex)
             {
                 _logger.LogError(ex, ex.Message);
-                throw ex;
+                throw;
             }
         }
     }
