@@ -66,6 +66,7 @@ apiVersioningBuilder.AddApiExplorer(options =>
     options.SubstituteApiVersionInUrl = true;
 }); // Nuget Package: Asp.Versioning.Mvc.ApiExplorer
 builder.Services.AddEndpointsApiExplorer();
+// builder.Services.Configure<RouteOptions>(options => { options.LowercaseUrls = true; });
 builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 builder.Services.AddSwaggerGen(options =>
 {
