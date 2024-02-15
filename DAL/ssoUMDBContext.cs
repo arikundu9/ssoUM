@@ -35,6 +35,8 @@ public partial class ssoUMDBContext : DbContext
         {
             entity.HasKey(e => e.Aid).HasName("app_pk");
 
+            entity.Property(e => e.AppName).IsFixedLength();
+
             entity.HasOne(d => d.JidNavigation).WithMany(p => p.Apps)
                 .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("app_fk");

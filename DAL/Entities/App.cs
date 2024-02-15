@@ -20,6 +20,10 @@ public partial class App
     [Column("jid")]
     public long? Jid { get; set; }
 
+    [Column("app_name")]
+    [StringLength(30)]
+    public string AppName { get; set; } = null!;
+
     [ForeignKey("Jid")]
     [InverseProperty("Apps")]
     public virtual Jwt? JidNavigation { get; set; }
