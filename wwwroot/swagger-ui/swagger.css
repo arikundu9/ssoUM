@@ -1,9 +1,9 @@
 :root {
-    --prime_aqua: #5f5f5fc8;
-    --prime_blue: #9f8c00;
+    --accent_color: #5f5f5fc8;
+    --prime_color: #089b57;
 }
 .swagger-ui .topbar {
-    background-color: var(--prime_blue);
+    background-color: var(--prime_color);
     box-shadow: 0 2px 4px -1px #0003, 0 4px 5px #00000024, 0 1px 10px #0000001f;
 }
 .swagger-ui .scheme-container {
@@ -14,7 +14,7 @@
     margin: 25px 0;
 }
 .swagger-ui .info .title {
-    color: var(--prime_blue);
+    color: var(--prime_color);
     font-size: 28px;
 }
 .swagger-ui .topbar .download-url-wrapper .select-label select {
@@ -104,7 +104,7 @@
 }
 .swagger-ui input[type="text"]:focus-visible {
     outline: none;
-    border: 1px solid var(--prime_blue);
+    border: 1px solid var(--prime_color);
 }
 /* width */
 ::-webkit-scrollbar {
@@ -119,12 +119,12 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: var(--prime_aqua);
+    background: var(--accent_color);
     border-radius: 3px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--prime_aqua);
+    background: var(--accent_color);
     filter: brightness(0.85);
 }
