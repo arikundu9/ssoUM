@@ -138,7 +138,7 @@ if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
         foreach (var description in app.DescribeApiVersions())
         {
             var url = $"/swagger/{description.GroupName}/swagger.json";
-            var name = description.GroupName.ToUpperInvariant();
+            var name = $"Version {description.GroupName.ToLowerInvariant()}";
             options.SwaggerEndpoint(url, name);
         }
     });
