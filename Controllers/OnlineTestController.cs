@@ -1,9 +1,12 @@
+using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ssoUM.Controllers;
 
+
+[Route("api/v{version:apiVersion}/[controller]")]
 [ApiController]
-[Route("[controller]")]
+[ApiVersion("1.0")]
 public class OnlineTestController : ControllerBase
 {
     private readonly ILogger<OnlineTestController> _logger;
