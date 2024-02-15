@@ -69,15 +69,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("v1",
-        new OpenApiInfo
-        {
-            Title = "ssoUM - version_1.0.0",
-            Version = "v1",
-            Description = "An .NET Core Web API for managing ssoUM. Docs Guide: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/xmldoc/",
-
-        }
-    );
+    // Add a custom operation filter which sets default values
+    options.OperationFilter<SwaggerDefaultValues>();
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 
@@ -140,6 +133,14 @@ if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
         options.ShowExtensions();
         options.DocumentTitle = "ssoUM API";
         options.DocExpansion(DocExpansion.None);
+
+        // Build a swagger endpoint for each discovered API version
+        foreach (var description in app.DescribeApiVersions())
+        {
+            var url = $"/swagger/{description.GroupName}/swagger.json";
+            var name = description.GroupName.ToUpperInvariant();
+            options.SwaggerEndpoint(url, name);
+        }
     });
 }
 

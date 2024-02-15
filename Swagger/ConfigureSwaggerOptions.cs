@@ -21,11 +21,11 @@ public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
     {
         var info = new OpenApiInfo()
         {
-            Title = "Example Web API",
+            Title = "ssoUM Web API",
             Version = description.ApiVersion.ToString(),
-            Description = "Description for the example Web API",
-            Contact = new OpenApiContact { Name = "Author name", Email = "author-main@org.com" },
-            License = new OpenApiLicense { Name = "MIT", Url = new Uri("https://opensource.org/licenses/MIT") }
+            Description = "An .NET Core Web API for managing ssoUM. Docs Guide: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/xmldoc/",
+            Contact = new OpenApiContact { Name = "NIC" },
+            // License = new OpenApiLicense { Name = "aaa", Url = new Uri("https://opensource.org/") }
         };
 
         if (description.IsDeprecated)
