@@ -6,7 +6,7 @@ using System.Data;
 
 namespace ssoUM.DAL
 {
-    public abstract class Repository<TEntity, Tcontext> : IRepository<TEntity> where TEntity : class where Tcontext : DbContext
+    public class Repository<TEntity, Tcontext> : IRepository<TEntity> where TEntity : class where Tcontext : DbContext
     {
         protected readonly Tcontext dbContext;
         public int pageNumber = -1;
