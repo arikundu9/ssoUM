@@ -12,6 +12,8 @@ using Newtonsoft.Json;
 using ssoUM.Middlewares;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using ssoUM.Utils;
+using static Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary;
 // using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -101,11 +103,13 @@ builder.Services.Configure<ApiBehaviorOptions>(config =>
 {
     config.InvalidModelStateResponseFactory =
         ctx => new BadRequestObjectResult(
-            new
+            new RestResponse<ValueEnumerable>()
             {
-                success = false,
-                result = ctx.ModelState.Values,
-                error = "DTO validation error :: result field specifies error location."
+                Success = false,
+                RespCode = ResponseCode.Invalid_DTO,
+                Data = ctx.ModelState.Values,
+                Message = "DTO validation error :: Data field specifies error location.",
+                // Errors = new List<object>()
             }
         );
 });

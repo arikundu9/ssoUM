@@ -9,6 +9,7 @@ public enum ResponseCode
     Invalid_offset_or_limit = 1003,
     Invalid_Locale = 1004,
     Invalid_Timezone = 1005,
+    Invalid_DTO = 1006,
     You_exceeded_the_limit_of_requests_per_minute___Please_try_again_after_sometime = 1006,
     //____________#_11XX_:_Http_Errors____________
     Unauthorized = 1101,

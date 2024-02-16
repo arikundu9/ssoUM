@@ -5,6 +5,7 @@ public class RestResponse<T>
     public bool Success { get; set; } = true;
     public T? Data { get; set; }
     public string Message { get; set; }
+    public List<object> Errors { get; set; }
     public ResponseCode RespCode { get; set; } = ResponseCode.Success;
     public RestResponse() { }
     public RestResponse(ResponseCode respCode, string message)
