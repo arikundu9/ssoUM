@@ -8,7 +8,7 @@ namespace ssoUM.DAL
 {
     public abstract class Repository<TEntity, Tcontext> : IRepository<TEntity> where TEntity : class where Tcontext : DbContext
     {
-        protected readonly Tcontext dbContext = null;
+        protected readonly Tcontext dbContext;
         public int pageNumber = -1;
         public int pageSize = -1;
 
