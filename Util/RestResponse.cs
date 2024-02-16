@@ -66,6 +66,10 @@ Response Code:
     '1320': 'confirmation code is expired! Try again'
     '1321': 'You cannot delete provider until he completed or cancelled his requests'
     '1322': 'Your account was blocked by Admin. Please contact admin at support@laancare.com'
+# 14XX Database Error
+    '1400': 'Generic Database error'
+    '1401': 'Foreign key violation'
+
 data_found:             'Data found'
     no_data_found:          'No data found'
     not_found:              'Not found'
