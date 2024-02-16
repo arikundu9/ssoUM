@@ -16,7 +16,7 @@ public class GlobalExceptionMiddleware
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-            var response = new RestResponse<bool>().ErrMsg($"generic error message : {((ex.InnerException != null) ? ex.InnerException.Message : ex.Message)}");
+            var response = new RestResponse<bool>().ErrMsg($"SystemException :: {((ex.InnerException != null) ? ex.InnerException.Message : ex.Message)}");
 
             await context.Response.WriteAsync(JsonConvert.SerializeObject(response));
         }
