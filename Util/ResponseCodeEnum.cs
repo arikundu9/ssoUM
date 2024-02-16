@@ -3,7 +3,7 @@ namespace ssoUM.Utils;
 public enum ResponseCode
 {
     //____________#_10XX_:_Main_App_Errors____________
-    App_Server_Error_please_contact_the_admin = 1000,
+    App_Server_Error = 1000,
     Missing_Headers = 1001,
     Missing_Parameters = 1002,
     Invalid_offset_or_limit = 1003,
@@ -48,5 +48,7 @@ public enum ResponseCode
     Your_account_was_blocked_by_Admin__Please_contact_admin_at_support_AT_laancare_DOT_com = 1322,
     //____________#_14XX_Database_Error____________
     Generic_Database_error = 1400,
-    Foreign_key_violation = 1401,
+    Foreign_Key_Violation = 1401,
+    //____________#_2XXX_Success____________
+    Success = 2000,
 }

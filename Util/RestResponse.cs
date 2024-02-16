@@ -5,9 +5,9 @@ public class RestResponse<T>
     public bool Success { get; set; } = true;
     public T? Data { get; set; }
     public string Message { get; set; }
-    public int RespCode { get; set; } = 2000;
+    public ResponseCode RespCode { get; set; } = ResponseCode.Success;
     public RestResponse() { }
-    public RestResponse(int respCode, string message)
+    public RestResponse(ResponseCode respCode, string message)
     {
         RespCode = respCode;
         Message = message;
@@ -15,7 +15,7 @@ public class RestResponse<T>
     public RestResponse<T> ErrMsg(string msg)
     {
         Success = false;
-        RespCode = 1000;
+        RespCode = ResponseCode.App_Server_Error;
         Message = msg;
         return this;
     }
