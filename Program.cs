@@ -168,6 +168,8 @@ app.UseAuthorization();
 
 // app.UseAuthTokenMiddleware();
 
+app.UseMiddleware<GlobalExceptionMiddleware>();
+
 app.MapControllers();
 
 app.Run();
