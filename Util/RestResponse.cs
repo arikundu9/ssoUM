@@ -17,7 +17,7 @@ public class RestResponse<T>
     {
         Success = false;
         RespCode = ResponseCode.App_Server_Error;
-        Message = msg;
+        Message = $"AppError ::: {msg}";
         return this;
     }
 }

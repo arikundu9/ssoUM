@@ -31,7 +31,7 @@ namespace ssoUM.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(Resp.ErrMsg($"generic error message : {((ex.InnerException != null) ? ex.InnerException.Message : ex.Message)}"));
+                return BadRequest(Resp.ErrMsg($"{((ex.InnerException != null) ? ex.InnerException.Message : ex.Message)}"));
             }
         }
 
