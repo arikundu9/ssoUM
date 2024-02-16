@@ -14,7 +14,7 @@ namespace ssoUM.Controllers
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     [ApiVersion("1.0")]
-    public class AppController : RestController
+    public class AppController : ControllerBase
     {
         public IConfiguration Configuration { get; }
 
@@ -31,12 +31,18 @@ namespace ssoUM.Controllers
             RestResponse<App> Resp = new();
             try
             {
-                return Success<App>();
+
+                return Ok(Resp);
             }
             catch (Exception ex)
             {
                 return BadRequest(Resp.ErrMsg($"generic error message : {ex.Message}"));
             }
         }
+
+        // [HttpGet]
+        // public IQueryable<App> GetApps(){
+
+        // }
     }
 }
