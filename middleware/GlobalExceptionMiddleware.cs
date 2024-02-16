@@ -5,11 +5,21 @@ using ssoUM.Utils;
 namespace ssoUM.Middlewares;
 public class GlobalExceptionMiddleware
 {
-    public async Task InvokeAsync(HttpContext context, Func<Task> next)
+
+    private readonly RequestDelegate _next;
+
+    private readonly ILogger<AuthTokenMiddleware> _logger;
+
+    public GlobalExceptionMiddleware(RequestDelegate next, ILogger<AuthTokenMiddleware> logger)
+    {
+        _logger = logger;
+        _next = next;
+    }
+    public async Task InvokeAsync(HttpContext context)
     {
         try
         {
-            await next();
+            await _next(context);
         }
         catch (Exception ex)
         {
