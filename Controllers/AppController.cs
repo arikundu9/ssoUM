@@ -1,13 +1,8 @@
 using Asp.Versioning;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using ssoUM.BAL.Interface;
-using ssoUM.DAL.Entities;
+using ssoUM.DTOs;
 using ssoUM.Utils;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text;
 
 namespace ssoUM.Controllers
 {
@@ -26,12 +21,12 @@ namespace ssoUM.Controllers
             _appService = appService;
         }
         [HttpPost]
-        public ActionResult<RestResponse<App>> Post()
+        public async Task<ActionResult<RestResponse<bool>>> Post(AppInsertDto app)
         {
-            RestResponse<App> Resp = new();
+            RestResponse<bool> Resp = new();
             try
             {
-
+                Resp.Data = await _appService.Insert(app);
                 return Ok(Resp);
             }
             catch (Exception ex)
