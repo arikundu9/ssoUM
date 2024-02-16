@@ -6,7 +6,7 @@ using System.Data;
 
 namespace ssoUM.DAL
 {
-    public abstract class Repository<T, Tcontext> : IRepository<T> where T : class where Tcontext : DbContext
+    public abstract class Repository<TEntity, Tcontext> : IRepository<TEntity> where TEntity : class where Tcontext : DbContext
     {
         protected readonly Tcontext dbContext = null;
         public int pageNumber = -1;
@@ -14,34 +14,70 @@ namespace ssoUM.DAL
 
         public Repository(Tcontext context)
         {
-            this.dbContext = context;
+            dbContext = context;
         }
 
 
         public bool IsTransactionRunning()
         {
-            return this.dbContext.Database.CurrentTransaction == null ? false : true;
+            return dbContext.Database.CurrentTransaction != null;
         }
-        private IDbContextTransaction BeginTran()
+        public IDbContextTransaction BeginTran()
         {
-            return this.dbContext.Database.BeginTransaction();
+            return dbContext.Database.BeginTransaction();
         }
         public IDbContextTransaction BeginTran(IsolationLevel isolationLevel)
         {
-            return this.dbContext.Database.BeginTransaction(isolationLevel);
+            return dbContext.Database.BeginTransaction(isolationLevel);
         }
-
-
 
         public IExecutionStrategy GetExecutionStrategy()
         {
-            return this.dbContext.Database.CreateExecutionStrategy();
+            return dbContext.Database.CreateExecutionStrategy();
+        }
+
+        public IEnumerable<TEntity> Get(
+            Expression<Func<TEntity, bool>> filter = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+            string includeProperties = "")
+        {
+            IQueryable<TEntity> query = dbContext.Set<TEntity>();
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            if (pageNumber > 0 && pageSize > 0)
+            {
+                query = query.Skip((pageNumber - 1) * pageSize).Take(pageSize);
+            }
+
+            foreach (var includeProperty in includeProperties.Split
+                (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+
+            if (orderBy != null)
+            {
+                return orderBy(query).ToList();
+            }
+            else
+            {
+                return query.ToList();
+            }
+        }
+
+        public TEntity GetByID(object id)
+        {
+            return dbContext.Set<TEntity>().Find(id);
         }
 
 
-        public IQueryable<T> GetAllByCondition(Expression<Func<T, bool>> condition)
+        public IQueryable<TEntity> GetAllByCondition(Expression<Func<TEntity, bool>> condition)
         {
-            IQueryable<T> result = this.dbContext.Set<T>();
+            IQueryable<TEntity> result = dbContext.Set<TEntity>();
             if (condition != null)
             {
                 if (pageNumber > 0 && pageSize > 0)
@@ -57,9 +93,9 @@ namespace ssoUM.DAL
             return result;
         }
 
-        public async Task<ICollection<T>> GetAllByConditionAsync(Expression<Func<T, bool>> condition)
+        public async Task<ICollection<TEntity>> GetAllByConditionAsync(Expression<Func<TEntity, bool>> condition)
         {
-            IQueryable<T> result = this.dbContext.Set<T>();
+            IQueryable<TEntity> result = dbContext.Set<TEntity>();
             if (condition != null)
             {
                 if (pageNumber > 0 && pageSize > 0)
@@ -75,93 +111,96 @@ namespace ssoUM.DAL
             return await result.ToListAsync();
         }
 
-        public IQueryable<T> GetAll()
+        public IQueryable<TEntity> GetAll()
         {
-            IQueryable<T> result;
+            IQueryable<TEntity> result;
             if (pageNumber > 0 && pageSize > 0)
             {
-                result = this.dbContext.Set<T>().Skip((pageNumber - 1) * pageSize).Take(pageSize);
+                result = dbContext.Set<TEntity>().Skip((pageNumber - 1) * pageSize).Take(pageSize);
             }
             else
             {
-                result = this.dbContext.Set<T>();
+                result = dbContext.Set<TEntity>();
             }
             return result;
         }
 
-        public async Task<ICollection<T>> GetAllAsync()
+        public async Task<ICollection<TEntity>> GetAllAsync()
         {
-            IQueryable<T> result;
+            IQueryable<TEntity> result;
             if (pageNumber > 0 && pageSize > 0)
             {
-                result = this.dbContext.Set<T>().Skip((pageNumber - 1) * pageSize).Take(pageSize);
+                result = dbContext.Set<TEntity>().Skip((pageNumber - 1) * pageSize).Take(pageSize);
             }
             else
             {
-                result = this.dbContext.Set<T>();
+                result = dbContext.Set<TEntity>();
             }
             return await result.ToListAsync();
         }
 
-        public T GetSingle(Expression<Func<T, bool>> condition)
+        public TEntity GetSingle(Expression<Func<TEntity, bool>> condition)
         {
-            return this.dbContext.Set<T>().Where(condition).FirstOrDefault();
+            return dbContext.Set<TEntity>().Where(condition).SingleOrDefault();
         }
 
-        public async Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> condition)
+        public async Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> condition)
         {
-            return await this.dbContext.Set<T>().Where(condition).FirstOrDefaultAsync();
+            return await dbContext.Set<TEntity>().Where(condition).FirstOrDefaultAsync();
         }
 
 
-        public async Task<T> GetSingleAysnc(Expression<Func<T, bool>> condition)
+        public async Task<TEntity> GetSingleAysnc(Expression<Func<TEntity, bool>> condition)
         {
-            var retValue = await this.dbContext.Set<T>().Where(condition).SingleOrDefaultAsync();
+            var retValue = await dbContext.Set<TEntity>().Where(condition).SingleOrDefaultAsync();
 
             return retValue;
         }
 
 
-        public bool Add(T entity)
+        public void Add(TEntity entity)
         {
-            this.dbContext.Set<T>().Add(entity);
-            return true;
+            dbContext.Set<TEntity>().Add(entity);
         }
-        public bool AddAll(List<T> entityArray)
+        public void AddAll(List<TEntity> entityArray)
         {
-            foreach (T entity in entityArray)
+            foreach (TEntity entity in entityArray)
             {
-                dbContext.Set<T>().Add(entity);
+                dbContext.Set<TEntity>().Add(entity);
             }
-
-            return true;
         }
-        public async Task<bool> AddAllAsync(List<T> entityArray)
+        public async Task AddAllAsync(List<TEntity> entityArray)
         {
-            foreach (T entity in entityArray)
+            foreach (TEntity entity in entityArray)
             {
-                await dbContext.Set<T>().AddAsync(entity);
+                await dbContext.Set<TEntity>().AddAsync(entity);
             }
-
-            return true;
         }
 
-        public bool Update(T entity)
+        public void Update(TEntity entity)
         {
-            this.dbContext.Entry(entity).State = EntityState.Modified;
-            return true;
+            dbContext.Entry(entity).State = EntityState.Modified;
         }
 
-        public bool Delete(T entity)
+        public void Delete(TEntity entity)
         {
-            this.dbContext.Set<T>().Remove(entity);
-            return true;
+            if (dbContext.Entry(entity).State == EntityState.Detached)
+            {
+                dbContext.Set<TEntity>().Attach(entity);
+            }
+            dbContext.Set<TEntity>().Remove(entity);
+        }
+
+        public void Delete(object id)
+        {
+            TEntity entityToDelete = dbContext.Set<TEntity>().Find(id);
+            Delete(entityToDelete);
         }
 
 
         public void SaveChangesManaged()
         {
-            this.dbContext.SaveChanges();
+            dbContext.SaveChanges();
         }
 
 

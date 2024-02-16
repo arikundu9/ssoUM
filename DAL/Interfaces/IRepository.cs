@@ -4,24 +4,30 @@ using System.Linq.Expressions;
 
 namespace ssoUM.DAL.Interfaces
 {
-    public interface IRepository<T>
+    public interface IRepository<TEntity>
     {
-        IQueryable<T> GetAllByCondition(Expression<Func<T, bool>> condition);
-        Task<ICollection<T>> GetAllByConditionAsync(Expression<Func<T, bool>> condition);
+        IQueryable<TEntity> GetAllByCondition(Expression<Func<TEntity, bool>> condition);
+        Task<ICollection<TEntity>> GetAllByConditionAsync(Expression<Func<TEntity, bool>> condition);
 
-        IQueryable<T> GetAll();
-        Task<ICollection<T>> GetAllAsync();
+        IEnumerable<TEntity> Get(
+            Expression<Func<TEntity, bool>> filter = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+            string includeProperties = "");
+        TEntity GetByID(object id);
+        IQueryable<TEntity> GetAll();
+        Task<ICollection<TEntity>> GetAllAsync();
 
-        T GetSingle(Expression<Func<T, bool>> condition);
+        TEntity GetSingle(Expression<Func<TEntity, bool>> condition);
 
-        Task<T> GetSingleAysnc(Expression<Func<T, bool>> condition);
-        Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> condition);
+        Task<TEntity> GetSingleAysnc(Expression<Func<TEntity, bool>> condition);
+        Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> condition);
 
-        bool Add(T entity);
-        bool AddAll(List<T> entityArray);
-        Task<bool> AddAllAsync(List<T> entityArray);
-        bool Update(T entity);
-        bool Delete(T entity);
+        void Add(TEntity entity);
+        void AddAll(List<TEntity> entityArray);
+        Task AddAllAsync(List<TEntity> entityArray);
+        void Update(TEntity entity);
+        void Delete(TEntity entity);
+        void Delete(object id);
 
         void SaveChangesManaged();
         public IExecutionStrategy GetExecutionStrategy();
