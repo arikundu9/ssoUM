@@ -14,6 +14,7 @@ public class RestResponse<T>
     }
     public RestResponse<T> ErrMsg(string msg)
     {
+        Success = false;
         RespCode = 1000;
         Message = msg;
         return this;
