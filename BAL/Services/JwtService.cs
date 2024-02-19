@@ -18,7 +18,7 @@ namespace ssoUM.BAL
 
         public async Task<IEnumerable<Jwt>?> getAll()
         {
-            return await _JwtRepo.GetAllAsync();
+            return await _JwtRepo.GetAsync(includeProperties: "Apps");
         }
 
         public async Task<bool> Insert(JwtInsertDto jwt)

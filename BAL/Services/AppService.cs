@@ -18,7 +18,7 @@ namespace ssoUM.BAL
 
         public async Task<IEnumerable<App>?> getAll()
         {
-            return await _AppRepo.GetAllAsync();
+            return await _AppRepo.GetAsync(includeProperties: "Roles,Users,JidNavigation");
         }
 
         public async Task<bool> Insert(AppInsertDto app)

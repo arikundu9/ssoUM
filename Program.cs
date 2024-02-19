@@ -14,6 +14,7 @@ using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using ssoUM.Utils;
 using static Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary;
+using System.Text.Json.Serialization;
 // using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -47,7 +48,10 @@ builder.Services.AddTransient<IJwtService, JwtService>();
 builder.Services.AddTransient<IAppService, AppService>();
 // builder.Services.AddTransient<ITransactionRepo, TransactionRepo>();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+});
 var apiVersioningBuilder = builder.Services.AddApiVersioning(x =>
 {
     x.DefaultApiVersion = new ApiVersion(1, 0);

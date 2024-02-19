@@ -18,7 +18,7 @@ namespace ssoUM.BAL
 
         public async Task<IEnumerable<Key>?> getAll()
         {
-            return await _KeyRepo.GetAllAsync();
+            return await _KeyRepo.GetAsync(includeProperties: "Jwts");
         }
 
         public async Task<bool> Insert(KeyInsertDto key)
