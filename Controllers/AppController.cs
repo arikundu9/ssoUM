@@ -1,6 +1,7 @@
 using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using ssoUM.BAL.Interface;
+using ssoUM.DAL.Entities;
 using ssoUM.DTOs;
 using ssoUM.Utils;
 
@@ -35,9 +36,18 @@ namespace ssoUM.Controllers
             }
         }
 
-        // [HttpGet]
-        // public IQueryable<App> GetApps(){
-
-        // }
+        [HttpGet]
+        public async Task<ActionResult<RestResponse<IEnumerable<App>>>> GetKeys(){
+            RestResponse<IEnumerable<App>> Resp = new();
+            try
+            {
+                Resp.Data = await _appService.getAll();
+                return Ok(Resp);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(Resp.ErrMsg($"{((ex.InnerException != null) ? ex.InnerException.Message : ex.Message)}"));
+            }
+        }
     }
 }

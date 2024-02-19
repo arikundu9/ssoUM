@@ -16,6 +16,11 @@ namespace ssoUM.BAL
             _mapper = mapper;
         }
 
+        public async Task<IEnumerable<Key>?> getAll()
+        {
+            return await _KeyRepo.GetAllAsync();
+        }
+
         public async Task<bool> Insert(KeyInsertDto key)
         {
             _KeyRepo.Add(new Key()

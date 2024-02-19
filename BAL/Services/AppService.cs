@@ -16,6 +16,11 @@ namespace ssoUM.BAL
             _mapper = mapper;
         }
 
+        public async Task<IEnumerable<App>?> getAll()
+        {
+            return await _AppRepo.GetAllAsync();
+        }
+
         public async Task<bool> Insert(AppInsertDto app)
         {
             _AppRepo.Add(new App()

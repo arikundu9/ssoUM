@@ -16,6 +16,11 @@ namespace ssoUM.BAL
             _mapper = mapper;
         }
 
+        public async Task<IEnumerable<Jwt>?> getAll()
+        {
+            return await _JwtRepo.GetAllAsync();
+        }
+
         public async Task<bool> Insert(JwtInsertDto jwt)
         {
             _JwtRepo.Add(new Jwt()
