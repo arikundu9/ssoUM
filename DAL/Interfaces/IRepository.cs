@@ -13,6 +13,10 @@ namespace ssoUM.DAL.Interfaces
             Expression<Func<TEntity, bool>>? filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
             string includeProperties = "");
+        Task<IEnumerable<TEntity>> GetAsync(
+            Expression<Func<TEntity, bool>>? filter = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
+            string includeProperties = "");
         TEntity GetByID(object id);
         IQueryable<TEntity> GetAll();
         Task<ICollection<TEntity>> GetAllAsync();
