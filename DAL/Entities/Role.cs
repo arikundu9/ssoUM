@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 namespace ssoUM.DAL.Entities;
 
 [Table("role")]
+[Index("Aid", Name = "IX_role_aid")]
+[Index("RPid", Name = "IX_role_r_pid")]
 public partial class Role
 {
     [Key]
@@ -35,5 +37,5 @@ public partial class Role
     public virtual Role? RP { get; set; }
 
     [InverseProperty("RidNavigation")]
-    public virtual ICollection<User> Users { get; } = new List<User>();
+    public virtual ICollection<UserHasRole> UserHasRoles { get; } = new List<UserHasRole>();
 }

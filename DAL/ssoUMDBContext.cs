@@ -26,6 +26,8 @@ public partial class ssoUMDBContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
+    public virtual DbSet<UserHasRole> UserHasRoles { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseNpgsql("Name=ConnectionStrings:ssoUMDBConnection__PG");
 
@@ -35,7 +37,9 @@ public partial class ssoUMDBContext : DbContext
         {
             entity.HasKey(e => e.Aid).HasName("app_pk");
 
-            entity.Property(e => e.AppName).IsFixedLength();
+            entity.Property(e => e.AppName)
+                .HasDefaultValueSql("''::bpchar")
+                .IsFixedLength();
 
             entity.HasOne(d => d.JidNavigation).WithMany(p => p.Apps)
                 .OnDelete(DeleteBehavior.SetNull)
@@ -72,8 +76,19 @@ public partial class ssoUMDBContext : DbContext
             entity.HasKey(e => e.Uid).HasName("user_pk");
 
             entity.HasOne(d => d.AidNavigation).WithMany(p => p.Users).HasConstraintName("user_fk");
+        });
 
-            entity.HasOne(d => d.RidNavigation).WithMany(p => p.Users).HasConstraintName("user_t_role_fk");
+        modelBuilder.Entity<UserHasRole>(entity =>
+        {
+            entity.HasKey(e => e.MappingId).HasName("user_has_role_pk");
+
+            entity.HasOne(d => d.RidNavigation).WithMany(p => p.UserHasRoles)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("user_has_role_role_fk");
+
+            entity.HasOne(d => d.UidNavigation).WithMany(p => p.UserHasRoles)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("user_has_role_user_fk");
         });
 
         OnModelCreatingPartial(modelBuilder);

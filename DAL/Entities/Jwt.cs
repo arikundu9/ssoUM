@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace ssoUM.DAL.Entities;
 
 [Table("jwt")]
+[Index("Kid", Name = "IX_jwt_kid")]
 public partial class Jwt
 {
     [Key]

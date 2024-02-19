@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace ssoUM.DAL.Entities;
 
 [Table("app")]
+[Index("Jid", Name = "IX_app_jid")]
 public partial class App
 {
     [Key]

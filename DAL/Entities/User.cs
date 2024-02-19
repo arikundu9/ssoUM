@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace ssoUM.DAL.Entities;
 
 [Table("user")]
+[Index("Aid", Name = "IX_user_aid")]
 public partial class User
 {
     [Key]
@@ -15,9 +16,6 @@ public partial class User
 
     [Column("aid")]
     public long Aid { get; set; }
-
-    [Column("rid")]
-    public long? Rid { get; set; }
 
     [Column("username")]
     [StringLength(100)]
@@ -35,7 +33,6 @@ public partial class User
     [InverseProperty("Users")]
     public virtual App AidNavigation { get; set; } = null!;
 
-    [ForeignKey("Rid")]
-    [InverseProperty("Users")]
-    public virtual Role? RidNavigation { get; set; }
+    [InverseProperty("UidNavigation")]
+    public virtual ICollection<UserHasRole> UserHasRoles { get; } = new List<UserHasRole>();
 }
