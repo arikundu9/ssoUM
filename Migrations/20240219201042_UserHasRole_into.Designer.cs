@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ssoUM.DAL;
@@ -11,9 +12,11 @@ using ssoUM.DAL;
 namespace ssoUM.Migrations
 {
     [DbContext(typeof(ssoUMDBContext))]
-    partial class ssoUMDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240219201042_UserHasRole_into")]
+    partial class UserHasRole_into
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
