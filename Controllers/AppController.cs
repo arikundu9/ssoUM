@@ -22,13 +22,13 @@ namespace ssoUM.Controllers
             _appService = appService;
         }
         [HttpPost]
-        public async Task<ActionResult<RestResponse<bool>>> Post(AppInsertDto app)
+        public async Task<ActionResult<RestResponse<long>>> Post(AppInsertDto app)
         {
-            RestResponse<bool> Resp = new();
+            RestResponse<long> Resp = new();
             try
             {
                 Resp.Data = await _appService.Insert(app);
-                Resp.Message = "Application registered successfully";
+                Resp.Message = $"Application registered successfully (Application ID: {Resp.Data})";
                 return Ok(Resp);
             }
             catch (Exception ex)

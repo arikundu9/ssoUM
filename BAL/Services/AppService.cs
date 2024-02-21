@@ -21,16 +21,17 @@ namespace ssoUM.BAL
             return await _AppRepo.GetAsync(includeProperties: "Roles,Users,JidNavigation");
         }
 
-        public async Task<bool> Insert(AppInsertDto app)
+        public async Task<long> Insert(AppInsertDto app)
         {
-            _AppRepo.Add(new App()
+            App a = new()
             {
                 Redirecturl = app.Redirecturl,
                 Jid = app.Jid,
                 AppName = app.AppName
-            });
+            };
+            _AppRepo.Add(a);
             _AppRepo.SaveChangesManaged();
-            return true;
+            return a.Aid;
         }
 
     }

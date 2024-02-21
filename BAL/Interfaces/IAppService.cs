@@ -6,7 +6,7 @@ namespace ssoUM.BAL.Interface
     public interface IAppService
     {
         Task<IEnumerable<App>?> getAll();
-        Task<bool> Insert(AppInsertDto app);
+        Task<long> Insert(AppInsertDto app);
 
     }
 }
