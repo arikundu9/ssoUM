@@ -38,7 +38,7 @@ namespace ssoUM.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<RestResponse<IEnumerable<App>>>> GetKeys()
+        public async Task<ActionResult<RestResponse<IEnumerable<App>>>> Get()
         {
             RestResponse<IEnumerable<App>> Resp = new();
             try

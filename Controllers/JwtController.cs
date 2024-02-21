@@ -37,7 +37,7 @@ namespace ssoUM.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<RestResponse<IEnumerable<Jwt>>>> GetKeys(){
+        public async Task<ActionResult<RestResponse<IEnumerable<Jwt>>>> Get(){
             RestResponse<IEnumerable<Jwt>> Resp = new();
             try
             {
