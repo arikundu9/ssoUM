@@ -28,6 +28,7 @@ namespace ssoUM.Controllers
             try
             {
                 Resp.Data = await _appService.Insert(app);
+                Resp.Message = "Application registered successfully";
                 return Ok(Resp);
             }
             catch (Exception ex)
@@ -37,7 +38,8 @@ namespace ssoUM.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<RestResponse<IEnumerable<App>>>> GetKeys(){
+        public async Task<ActionResult<RestResponse<IEnumerable<App>>>> GetKeys()
+        {
             RestResponse<IEnumerable<App>> Resp = new();
             try
             {
