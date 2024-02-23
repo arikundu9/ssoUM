@@ -28,6 +28,7 @@ namespace ssoUM.Controllers
             try
             {
                 Resp.Data = await _KeyService.Insert(Key);
+                Resp.Message = $"Key saved successfully (Key ID: {Resp.Data})";
                 return Ok(Resp);
             }
             catch (Exception ex)
