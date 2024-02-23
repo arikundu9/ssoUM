@@ -21,17 +21,18 @@ namespace ssoUM.BAL
             return await _KeyRepo.GetAsync(includeProperties: "Jwts");
         }
 
-        public async Task<bool> Insert(KeyInsertDto key)
+        public async Task<long> Insert(KeyInsertDto key)
         {
-            _KeyRepo.Add(new Key()
+            Key k = new()
             {
                 Type = key.Type,
                 PrivateKey = key.PrivateKey,
                 PublicKey = key.PublicKey,
                 Algo = key.Algo
-            });
+            };
+            _KeyRepo.Add(k);
             _KeyRepo.SaveChangesManaged();
-            return true;
+            return k.Kid;
         }
     }
 }

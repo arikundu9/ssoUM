@@ -22,9 +22,9 @@ namespace ssoUM.Controllers
             _KeyService = KeyService;
         }
         [HttpPost]
-        public async Task<ActionResult<RestResponse<bool>>> Post(KeyInsertDto Key)
+        public async Task<ActionResult<RestResponse<long>>> Post(KeyInsertDto Key)
         {
-            RestResponse<bool> Resp = new();
+            RestResponse<long> Resp = new();
             try
             {
                 Resp.Data = await _KeyService.Insert(Key);
