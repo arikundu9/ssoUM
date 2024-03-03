@@ -22,12 +22,13 @@ namespace ssoUM.Controllers
             _JwtService = JwtService;
         }
         [HttpPost]
-        public async Task<ActionResult<RestResponse<bool>>> Post(JwtInsertDto Jwt)
+        public async Task<ActionResult<RestResponse<long>>> Post(JwtInsertDto Jwt)
         {
-            RestResponse<bool> Resp = new();
+            RestResponse<long> Resp = new();
             try
             {
                 Resp.Data = await _JwtService.Insert(Jwt);
+                Resp.Message = $"JWT saved successfully (JWT ID: {Resp.Data})";
                 return Ok(Resp);
             }
             catch (Exception ex)

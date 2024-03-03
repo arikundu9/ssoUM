@@ -6,6 +6,6 @@ namespace ssoUM.BAL.Interface
     public interface IJwtService
     {
         Task<IEnumerable<Jwt>?> getAll();
-        Task<bool> Insert(JwtInsertDto jwt);
+        Task<long> Insert(JwtInsertDto jwt);
     }
 }

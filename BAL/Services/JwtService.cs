@@ -18,18 +18,19 @@ namespace ssoUM.BAL
 
         public async Task<IEnumerable<Jwt>?> getAll()
         {
-            return await _JwtRepo.GetAsync(includeProperties: "Apps");
+            return await _JwtRepo.GetAsync(includeProperties: "Apps,KidNavigation");
         }
 
-        public async Task<bool> Insert(JwtInsertDto jwt)
+        public async Task<long> Insert(JwtInsertDto jwt)
         {
-            _JwtRepo.Add(new Jwt()
+            Jwt j = new()
             {
                 Description = jwt.Description,
                 Kid = jwt.Kid
-            });
+            };
+            _JwtRepo.Add(j);
             _JwtRepo.SaveChangesManaged();
-            return true;
+            return j.Jid;
         }
     }
 }
