@@ -28,7 +28,7 @@ namespace ssoUM.BAL
                 Description = jwt.Description,
                 Kid = jwt.Kid
             };
-            _JwtRepo.Add(j);
+            await _JwtRepo.AddAsync(j);
             _JwtRepo.SaveChangesManaged();
             return j.Jid;
         }
