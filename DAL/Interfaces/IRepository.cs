@@ -27,6 +27,7 @@ namespace ssoUM.DAL.Interfaces
         Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> condition);
 
         void Add(TEntity entity);
+        Task<TEntity> AddAsync(TEntity entity);
         void AddAll(List<TEntity> entityArray);
         Task AddAllAsync(List<TEntity> entityArray);
         void Update(TEntity entity);

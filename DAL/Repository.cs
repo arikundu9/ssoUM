@@ -245,5 +245,10 @@ namespace ssoUM.DAL
         {
             pageSize = p;
         }
+
+        public async Task<TEntity> AddAsync(TEntity entity)
+        {
+            return (await dbContext.Set<TEntity>().AddAsync(entity)).Entity;
+        }
     }
 }
