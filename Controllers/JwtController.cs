@@ -40,6 +40,18 @@ namespace ssoUM.Controllers
         [HttpGet]
         public async Task<ActionResult<RestResponse<IEnumerable<Jwt>>>> Get(){
             RestResponse<IEnumerable<Jwt>> Resp = new();
+            int a=5;
+            int c=10;
+            int b=c/2;
+            Console.WriteLine(a==b);
+            string s1 = "test";
+            string s2 = "test";
+            string s3 = "test1"[..4];
+            Console.WriteLine(s3);
+            object s4 = s3;  // Notice: set to object variable!
+            Console.WriteLine($"{object.ReferenceEquals(s1, s2)} {s1 == s2} {s1.Equals(s2)}");
+            Console.WriteLine($"{object.ReferenceEquals(s1, s3)} {s1 == s3} {s1.Equals(s3)}");
+            Console.WriteLine($"{object.ReferenceEquals(s1, s4)} {s1 == s4} {s1.Equals(s4)}");
             try
             {
                 Resp.Data = await _JwtService.getAll();
