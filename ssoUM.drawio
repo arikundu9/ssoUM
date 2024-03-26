@@ -1,11 +1,11 @@
-<mxfile host="Electron" modified="2023-07-06T12:59:47.202Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.5.1 Chrome/112.0.5615.204 Electron/24.6.0 Safari/537.36" etag="WUjucvVV4tZkruTuPtOq" version="21.5.1" type="device">
+<mxfile host="app.diagrams.net" modified="2024-03-26T19:22:25.089Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" etag="pTIpzo4vZQgx5ircCUzR" version="23.1.5" type="device">
   <diagram id="R2lEEEUBdFMjLlhIrx00" name="Page-1">
-    <mxGraphModel dx="1404" dy="1681" grid="1" gridSize="1" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="none" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
+    <mxGraphModel dx="2602" dy="1646" grid="1" gridSize="1" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="none" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="C-vyLk0tnHw3VtMMgP7b-23" value="App" style="shape=table;startSize=36;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;labelBackgroundColor=none;rounded=0;swimlaneFillColor=default;fontSize=15;fillColor=#FFE45E;strokeColor=#FF6392;fontColor=#5AA9E6;fontFamily=Tahoma;" parent="1" vertex="1">
-          <mxGeometry x="395" y="26" width="306" height="235" as="geometry">
+          <mxGeometry x="382" y="126" width="306" height="235" as="geometry">
             <mxRectangle x="50" y="240" width="100" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -151,15 +151,15 @@
             <mxRectangle width="245" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="EpzCG6jMedynn4fM8jyG-1" value="" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;labelBackgroundColor=none;strokeColor=#FF6392;fontColor=#5AA9E6;rounded=0;fontFamily=Tahoma;" vertex="1" parent="PRN0NHYNmr-ghJEEbDAV-16">
+        <mxCell id="EpzCG6jMedynn4fM8jyG-1" value="" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;labelBackgroundColor=none;strokeColor=#FF6392;fontColor=#5AA9E6;rounded=0;fontFamily=Tahoma;" parent="PRN0NHYNmr-ghJEEbDAV-16" vertex="1">
           <mxGeometry y="126" width="306" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="EpzCG6jMedynn4fM8jyG-2" value="" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=0;labelBackgroundColor=none;strokeColor=#FF6392;fontColor=#5AA9E6;rounded=0;fontFamily=Tahoma;" vertex="1" parent="EpzCG6jMedynn4fM8jyG-1">
+        <mxCell id="EpzCG6jMedynn4fM8jyG-2" value="" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=0;labelBackgroundColor=none;strokeColor=#FF6392;fontColor=#5AA9E6;rounded=0;fontFamily=Tahoma;" parent="EpzCG6jMedynn4fM8jyG-1" vertex="1">
           <mxGeometry width="61" height="30" as="geometry">
             <mxRectangle width="61" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="EpzCG6jMedynn4fM8jyG-3" value="appID || BIGINT, !NULL " style="shape=partialRectangle;overflow=hidden;connectable=1;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=0;labelBackgroundColor=none;strokeColor=#FF6392;fontColor=#5AA9E6;rounded=0;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;fontFamily=Tahoma;" vertex="1" parent="EpzCG6jMedynn4fM8jyG-1">
+        <mxCell id="EpzCG6jMedynn4fM8jyG-3" value="appID || BIGINT, !NULL " style="shape=partialRectangle;overflow=hidden;connectable=1;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=0;labelBackgroundColor=none;strokeColor=#FF6392;fontColor=#5AA9E6;rounded=0;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;fontFamily=Tahoma;" parent="EpzCG6jMedynn4fM8jyG-1" vertex="1">
           <mxGeometry x="61" width="245" height="30" as="geometry">
             <mxRectangle width="245" height="30" as="alternateBounds" />
           </mxGeometry>
@@ -196,7 +196,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="PRN0NHYNmr-ghJEEbDAV-54" value="USER" style="shape=table;startSize=36;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;labelBackgroundColor=none;rounded=0;swimlaneFillColor=default;fontSize=15;fillColor=#FFE45E;strokeColor=#FF6392;fontColor=#5AA9E6;fontFamily=Tahoma;" parent="1" vertex="1">
-          <mxGeometry x="23" y="404" width="306" height="235" as="geometry">
+          <mxGeometry x="-11" y="242" width="306" height="235" as="geometry">
             <mxRectangle x="50" y="240" width="100" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -327,7 +327,7 @@
             <mxPoint x="633" y="361" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="EpzCG6jMedynn4fM8jyG-4" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERzeroToMany;endFill=1;rounded=0;" edge="1" parent="1" source="C-vyLk0tnHw3VtMMgP7b-24" target="EpzCG6jMedynn4fM8jyG-1">
+        <mxCell id="EpzCG6jMedynn4fM8jyG-4" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERzeroToMany;endFill=1;rounded=0;" parent="1" source="C-vyLk0tnHw3VtMMgP7b-24" target="EpzCG6jMedynn4fM8jyG-1" edge="1">
           <mxGeometry width="100" height="100" relative="1" as="geometry">
             <mxPoint x="533" y="461" as="sourcePoint" />
             <mxPoint x="633" y="361" as="targetPoint" />
@@ -335,6 +335,12 @@
               <mxPoint x="753" y="459" />
             </Array>
           </mxGeometry>
+        </mxCell>
+        <mxCell id="Yy1w4iHkZolja4eYXSgL-1" value="ssoUM v1:&lt;br&gt;1. self login will be done through api&lt;br&gt;2.&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="79" y="840" width="517" height="277" as="geometry" />
+        </mxCell>
+        <mxCell id="Yy1w4iHkZolja4eYXSgL-2" value="TODO&lt;br&gt;1.&amp;nbsp; put data for self login ( put proper data for jwt generation)&lt;br&gt;2. generate jwt for self login&lt;br&gt;2.5 jjwt algo and other things has to be enum based ( full list needed)&lt;br&gt;&lt;div&gt;3. key, jwt, app validation.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="730" y="938" width="400" height="114" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
