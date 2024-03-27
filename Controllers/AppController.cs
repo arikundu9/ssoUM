@@ -10,6 +10,8 @@ namespace ssoUM.Controllers
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     [ApiVersion("1.0")]
+    [Produces("application/json", "application/xml")]
+    [Consumes("application/json", "application/xml")]
     public class AppController : ControllerBase
     {
         public IConfiguration Configuration { get; }
@@ -22,6 +24,8 @@ namespace ssoUM.Controllers
             _appService = appService;
         }
         [HttpPost]
+        // [Produces("application/json", "application/xml")]
+        // [Consumes("application/json", "application/xml")]
         public async Task<ActionResult<RestResponse<long>>> Post(AppInsertDto app)
         {
             RestResponse<long> Resp = new();
@@ -38,6 +42,8 @@ namespace ssoUM.Controllers
         }
 
         [HttpGet]
+        // [Produces("application/json", "application/xml")]
+        // [Consumes("application/json", "application/xml")]
         public async Task<ActionResult<RestResponse<IEnumerable<App>>>> Get()
         {
             RestResponse<IEnumerable<App>> Resp = new();
@@ -50,6 +56,14 @@ namespace ssoUM.Controllers
             {
                 return BadRequest(Resp.ErrMsg($"{((ex.InnerException != null) ? ex.InnerException.Message : ex.Message)}"));
             }
+        }
+
+        [HttpGet("getuser")]
+        [Produces("application/xml")]
+        public IActionResult GetUser(int id)
+        {
+            var user = new { Id = id, Name = "Steve James" };
+            return Ok(user);
         }
     }
 }
