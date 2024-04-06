@@ -199,14 +199,14 @@ namespace ssoUM.DAL
         {
             foreach (TEntity entity in entityArray)
             {
-                dbContext.Set<TEntity>().Add(entity);
+                dbContext.Set<TEntity>().AddRange(entity);
             }
         }
         public async Task AddAllAsync(List<TEntity> entityArray)
         {
             foreach (TEntity entity in entityArray)
             {
-                await dbContext.Set<TEntity>().AddAsync(entity);
+                await dbContext.Set<TEntity>().AddRangeAsync(entity);
             }
         }
 
