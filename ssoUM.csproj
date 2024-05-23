@@ -7,8 +7,6 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
         <IsPackable>true</IsPackable>
-        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-        <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
         <NoWarn>$(NoWarn);NU1701</NoWarn>
         <NoWarn>$(NoWarn);1591</NoWarn>
         <!-- suppress the waraning code "1591" -->
