@@ -197,17 +197,11 @@ namespace ssoUM.DAL
         }
         public void AddAll(List<TEntity> entityArray)
         {
-            foreach (TEntity entity in entityArray)
-            {
-                dbContext.Set<TEntity>().AddRange(entity);
-            }
+            dbContext.Set<TEntity>().AddRange(entityArray);
         }
         public async Task AddAllAsync(List<TEntity> entityArray)
         {
-            foreach (TEntity entity in entityArray)
-            {
-                await dbContext.Set<TEntity>().AddRangeAsync(entity);
-            }
+            await dbContext.Set<TEntity>().AddRangeAsync(entityArray);
         }
 
         public void Update(TEntity entity)
