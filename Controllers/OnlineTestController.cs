@@ -9,23 +9,23 @@ namespace ssoUM.Controllers;
 [ApiVersion("1.1", Deprecated = true)]
 public class OnlineTestController : ControllerBase
 {
-    private readonly ILogger<OnlineTestController> _logger;
+	private readonly ILogger<OnlineTestController> _logger;
 
-    public OnlineTestController(ILogger<OnlineTestController> logger)
-    {
-        _logger = logger;
-    }
+	public OnlineTestController(ILogger<OnlineTestController> logger)
+	{
+		_logger = logger;
+	}
 
-    /// <summary>
-    /// Generates string "Online"
-    /// </summary>
-    /// <remarks>
-    /// Generates string "Online"
-    /// </remarks>
-    /// <returns></returns>
-    [HttpGet]
-    public string Get()
-    {
-        return "Online";
-    }
+	/// <summary>
+	/// Generates string "Online"
+	/// </summary>
+	/// <remarks>
+	/// Generates string "Online"
+	/// </remarks>
+	/// <returns></returns>
+	[HttpGet]
+	public string Get()
+	{
+		return "Online";
+	}
 }

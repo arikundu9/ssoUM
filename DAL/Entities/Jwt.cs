@@ -10,21 +10,21 @@ namespace ssoUM.DAL.Entities;
 [Index("Kid", Name = "IX_jwt_kid")]
 public partial class Jwt
 {
-    [Key]
-    [Column("jid")]
-    public long Jid { get; set; }
+	[Key]
+	[Column("jid")]
+	public long Jid { get; set; }
 
-    [Column("description")]
-    [StringLength(30)]
-    public string Description { get; set; } = null!;
+	[Column("description")]
+	[StringLength(30)]
+	public string Description { get; set; } = null!;
 
-    [Column("kid")]
-    public long? Kid { get; set; }
+	[Column("kid")]
+	public long? Kid { get; set; }
 
-    [InverseProperty("JidNavigation")]
-    public virtual ICollection<App> Apps { get; } = new List<App>();
+	[InverseProperty("JidNavigation")]
+	public virtual ICollection<App> Apps { get; } = new List<App>();
 
-    [ForeignKey("Kid")]
-    [InverseProperty("Jwts")]
-    public virtual Key? KidNavigation { get; set; }
+	[ForeignKey("Kid")]
+	[InverseProperty("Jwts")]
+	public virtual Key? KidNavigation { get; set; }
 }

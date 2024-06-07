@@ -7,92 +7,92 @@ namespace ssoUM.DAL;
 
 public partial class ssoUMDBContext : DbContext
 {
-    public ssoUMDBContext()
-    {
-    }
+	public ssoUMDBContext()
+	{
+	}
 
-    public ssoUMDBContext(DbContextOptions<ssoUMDBContext> options)
-        : base(options)
-    {
-    }
+	public ssoUMDBContext(DbContextOptions<ssoUMDBContext> options)
+		: base(options)
+	{
+	}
 
-    public virtual DbSet<App> Apps { get; set; }
+	public virtual DbSet<App> Apps { get; set; }
 
-    public virtual DbSet<Jwt> Jwts { get; set; }
+	public virtual DbSet<Jwt> Jwts { get; set; }
 
-    public virtual DbSet<Key> Keys { get; set; }
+	public virtual DbSet<Key> Keys { get; set; }
 
-    public virtual DbSet<Role> Roles { get; set; }
+	public virtual DbSet<Role> Roles { get; set; }
 
-    public virtual DbSet<User> Users { get; set; }
+	public virtual DbSet<User> Users { get; set; }
 
-    public virtual DbSet<UserHasRole> UserHasRoles { get; set; }
+	public virtual DbSet<UserHasRole> UserHasRoles { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseNpgsql("Name=ConnectionStrings:ssoUMDBConnection__PG");
+	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		=> optionsBuilder.UseNpgsql("Name=ConnectionStrings:ssoUMDBConnection__PG");
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<App>(entity =>
-        {
-            entity.HasKey(e => e.Aid).HasName("app_pk");
+	protected override void OnModelCreating(ModelBuilder modelBuilder)
+	{
+		modelBuilder.Entity<App>(entity =>
+		{
+			entity.HasKey(e => e.Aid).HasName("app_pk");
 
-            entity.Property(e => e.AppName)
-                .HasDefaultValueSql("''::bpchar")
-                .IsFixedLength();
+			entity.Property(e => e.AppName)
+				.HasDefaultValueSql("''::bpchar")
+				.IsFixedLength();
 
-            entity.HasOne(d => d.JidNavigation).WithMany(p => p.Apps)
-                .OnDelete(DeleteBehavior.SetNull)
-                .HasConstraintName("app_fk");
-        });
+			entity.HasOne(d => d.JidNavigation).WithMany(p => p.Apps)
+				.OnDelete(DeleteBehavior.SetNull)
+				.HasConstraintName("app_fk");
+		});
 
-        modelBuilder.Entity<Jwt>(entity =>
-        {
-            entity.HasKey(e => e.Jid).HasName("jwt_pk");
+		modelBuilder.Entity<Jwt>(entity =>
+		{
+			entity.HasKey(e => e.Jid).HasName("jwt_pk");
 
-            entity.HasOne(d => d.KidNavigation).WithMany(p => p.Jwts)
-                .OnDelete(DeleteBehavior.SetNull)
-                .HasConstraintName("jwt_fk");
-        });
+			entity.HasOne(d => d.KidNavigation).WithMany(p => p.Jwts)
+				.OnDelete(DeleteBehavior.SetNull)
+				.HasConstraintName("jwt_fk");
+		});
 
-        modelBuilder.Entity<Key>(entity =>
-        {
-            entity.HasKey(e => e.Kid).HasName("keys_pk");
-        });
+		modelBuilder.Entity<Key>(entity =>
+		{
+			entity.HasKey(e => e.Kid).HasName("keys_pk");
+		});
 
-        modelBuilder.Entity<Role>(entity =>
-        {
-            entity.HasKey(e => e.Rid).HasName("role_pk");
+		modelBuilder.Entity<Role>(entity =>
+		{
+			entity.HasKey(e => e.Rid).HasName("role_pk");
 
-            entity.HasOne(d => d.AidNavigation).WithMany(p => p.Roles)
-                .OnDelete(DeleteBehavior.SetNull)
-                .HasConstraintName("role_t_app_fk");
+			entity.HasOne(d => d.AidNavigation).WithMany(p => p.Roles)
+				.OnDelete(DeleteBehavior.SetNull)
+				.HasConstraintName("role_t_app_fk");
 
-            entity.HasOne(d => d.RP).WithMany(p => p.InverseRP).HasConstraintName("role_fk");
-        });
+			entity.HasOne(d => d.RP).WithMany(p => p.InverseRP).HasConstraintName("role_fk");
+		});
 
-        modelBuilder.Entity<User>(entity =>
-        {
-            entity.HasKey(e => e.Uid).HasName("user_pk");
+		modelBuilder.Entity<User>(entity =>
+		{
+			entity.HasKey(e => e.Uid).HasName("user_pk");
 
-            entity.HasOne(d => d.AidNavigation).WithMany(p => p.Users).HasConstraintName("user_fk");
-        });
+			entity.HasOne(d => d.AidNavigation).WithMany(p => p.Users).HasConstraintName("user_fk");
+		});
 
-        modelBuilder.Entity<UserHasRole>(entity =>
-        {
-            entity.HasKey(e => e.MappingId).HasName("user_has_role_pk");
+		modelBuilder.Entity<UserHasRole>(entity =>
+		{
+			entity.HasKey(e => e.MappingId).HasName("user_has_role_pk");
 
-            entity.HasOne(d => d.RidNavigation).WithMany(p => p.UserHasRoles)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("user_has_role_role_fk");
+			entity.HasOne(d => d.RidNavigation).WithMany(p => p.UserHasRoles)
+				.OnDelete(DeleteBehavior.ClientSetNull)
+				.HasConstraintName("user_has_role_role_fk");
 
-            entity.HasOne(d => d.UidNavigation).WithMany(p => p.UserHasRoles)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("user_has_role_user_fk");
-        });
+			entity.HasOne(d => d.UidNavigation).WithMany(p => p.UserHasRoles)
+				.OnDelete(DeleteBehavior.ClientSetNull)
+				.HasConstraintName("user_has_role_user_fk");
+		});
 
-        OnModelCreatingPartial(modelBuilder);
-    }
+		OnModelCreatingPartial(modelBuilder);
+	}
 
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+	partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

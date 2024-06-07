@@ -11,269 +11,269 @@ using ssoUM.DAL;
 
 namespace ssoUM.Migrations
 {
-    [DbContext(typeof(ssoUMDBContext))]
-    [Migration("20240215083221_InitialCreate")]
-    partial class InitialCreate
-    {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
-        {
+	[DbContext(typeof(ssoUMDBContext))]
+	[Migration("20240215083221_InitialCreate")]
+	partial class InitialCreate
+	{
+		/// <inheritdoc />
+		protected override void BuildTargetModel(ModelBuilder modelBuilder)
+		{
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.8")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+			modelBuilder
+				.HasAnnotation("ProductVersion", "7.0.8")
+				.HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+			NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("ssoUM.DAL.Entities.App", b =>
-                {
-                    b.Property<long>("Aid")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("aid");
+			modelBuilder.Entity("ssoUM.DAL.Entities.App", b =>
+				{
+					b.Property<long>("Aid")
+						.ValueGeneratedOnAdd()
+						.HasColumnType("bigint")
+						.HasColumnName("aid");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Aid"));
+					NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Aid"));
 
-                    b.Property<long?>("Jid")
-                        .HasColumnType("bigint")
-                        .HasColumnName("jid");
+					b.Property<long?>("Jid")
+						.HasColumnType("bigint")
+						.HasColumnName("jid");
 
-                    b.Property<string>("Redirecturl")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)")
-                        .HasColumnName("redirecturl");
+					b.Property<string>("Redirecturl")
+						.IsRequired()
+						.HasMaxLength(100)
+						.HasColumnType("character varying(100)")
+						.HasColumnName("redirecturl");
 
-                    b.HasKey("Aid")
-                        .HasName("app_pk");
+					b.HasKey("Aid")
+						.HasName("app_pk");
 
-                    b.HasIndex("Jid");
+					b.HasIndex("Jid");
 
-                    b.ToTable("app");
-                });
+					b.ToTable("app");
+				});
 
-            modelBuilder.Entity("ssoUM.DAL.Entities.Jwt", b =>
-                {
-                    b.Property<long>("Jid")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("jid");
+			modelBuilder.Entity("ssoUM.DAL.Entities.Jwt", b =>
+				{
+					b.Property<long>("Jid")
+						.ValueGeneratedOnAdd()
+						.HasColumnType("bigint")
+						.HasColumnName("jid");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Jid"));
+					NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Jid"));
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("character varying(30)")
-                        .HasColumnName("description");
+					b.Property<string>("Description")
+						.IsRequired()
+						.HasMaxLength(30)
+						.HasColumnType("character varying(30)")
+						.HasColumnName("description");
 
-                    b.Property<long?>("Kid")
-                        .HasColumnType("bigint")
-                        .HasColumnName("kid");
+					b.Property<long?>("Kid")
+						.HasColumnType("bigint")
+						.HasColumnName("kid");
 
-                    b.HasKey("Jid")
-                        .HasName("jwt_pk");
+					b.HasKey("Jid")
+						.HasName("jwt_pk");
 
-                    b.HasIndex("Kid");
+					b.HasIndex("Kid");
 
-                    b.ToTable("jwt");
-                });
+					b.ToTable("jwt");
+				});
 
-            modelBuilder.Entity("ssoUM.DAL.Entities.Key", b =>
-                {
-                    b.Property<long>("Kid")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("kid");
+			modelBuilder.Entity("ssoUM.DAL.Entities.Key", b =>
+				{
+					b.Property<long>("Kid")
+						.ValueGeneratedOnAdd()
+						.HasColumnType("bigint")
+						.HasColumnName("kid");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Kid"));
+					NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Kid"));
 
-                    b.Property<string>("Algo")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("character varying(30)")
-                        .HasColumnName("algo");
+					b.Property<string>("Algo")
+						.IsRequired()
+						.HasMaxLength(30)
+						.HasColumnType("character varying(30)")
+						.HasColumnName("algo");
 
-                    b.Property<string>("PrivateKey")
-                        .IsRequired()
-                        .HasColumnType("character varying")
-                        .HasColumnName("private_key");
+					b.Property<string>("PrivateKey")
+						.IsRequired()
+						.HasColumnType("character varying")
+						.HasColumnName("private_key");
 
-                    b.Property<string>("PublicKey")
-                        .HasColumnType("character varying")
-                        .HasColumnName("public_key");
+					b.Property<string>("PublicKey")
+						.HasColumnType("character varying")
+						.HasColumnName("public_key");
 
-                    b.Property<short>("Type")
-                        .HasColumnType("smallint")
-                        .HasColumnName("type");
+					b.Property<short>("Type")
+						.HasColumnType("smallint")
+						.HasColumnName("type");
 
-                    b.HasKey("Kid")
-                        .HasName("keys_pk");
+					b.HasKey("Kid")
+						.HasName("keys_pk");
 
-                    b.ToTable("keys");
-                });
+					b.ToTable("keys");
+				});
 
-            modelBuilder.Entity("ssoUM.DAL.Entities.Role", b =>
-                {
-                    b.Property<long>("Rid")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("rid");
+			modelBuilder.Entity("ssoUM.DAL.Entities.Role", b =>
+				{
+					b.Property<long>("Rid")
+						.ValueGeneratedOnAdd()
+						.HasColumnType("bigint")
+						.HasColumnName("rid");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Rid"));
+					NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Rid"));
 
-                    b.Property<long?>("Aid")
-                        .HasColumnType("bigint")
-                        .HasColumnName("aid");
+					b.Property<long?>("Aid")
+						.HasColumnType("bigint")
+						.HasColumnName("aid");
 
-                    b.Property<long?>("RPid")
-                        .HasColumnType("bigint")
-                        .HasColumnName("r_pid");
+					b.Property<long?>("RPid")
+						.HasColumnType("bigint")
+						.HasColumnName("r_pid");
 
-                    b.Property<string>("RoleCode")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("character varying(30)")
-                        .HasColumnName("role_code");
+					b.Property<string>("RoleCode")
+						.IsRequired()
+						.HasMaxLength(30)
+						.HasColumnType("character varying(30)")
+						.HasColumnName("role_code");
 
-                    b.HasKey("Rid")
-                        .HasName("role_pk");
+					b.HasKey("Rid")
+						.HasName("role_pk");
 
-                    b.HasIndex("Aid");
+					b.HasIndex("Aid");
 
-                    b.HasIndex("RPid");
+					b.HasIndex("RPid");
 
-                    b.ToTable("role");
-                });
+					b.ToTable("role");
+				});
 
-            modelBuilder.Entity("ssoUM.DAL.Entities.User", b =>
-                {
-                    b.Property<long>("Uid")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("uid");
+			modelBuilder.Entity("ssoUM.DAL.Entities.User", b =>
+				{
+					b.Property<long>("Uid")
+						.ValueGeneratedOnAdd()
+						.HasColumnType("bigint")
+						.HasColumnName("uid");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Uid"));
+					NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Uid"));
 
-                    b.Property<long>("Aid")
-                        .HasColumnType("bigint")
-                        .HasColumnName("aid");
+					b.Property<long>("Aid")
+						.HasColumnType("bigint")
+						.HasColumnName("aid");
 
-                    b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)")
-                        .HasColumnName("password_hash");
+					b.Property<string>("PasswordHash")
+						.IsRequired()
+						.HasMaxLength(100)
+						.HasColumnType("character varying(100)")
+						.HasColumnName("password_hash");
 
-                    b.Property<string>("PasswordSalt")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)")
-                        .HasColumnName("password_salt");
+					b.Property<string>("PasswordSalt")
+						.IsRequired()
+						.HasMaxLength(100)
+						.HasColumnType("character varying(100)")
+						.HasColumnName("password_salt");
 
-                    b.Property<long?>("Rid")
-                        .HasColumnType("bigint")
-                        .HasColumnName("rid");
+					b.Property<long?>("Rid")
+						.HasColumnType("bigint")
+						.HasColumnName("rid");
 
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)")
-                        .HasColumnName("username");
+					b.Property<string>("Username")
+						.IsRequired()
+						.HasMaxLength(100)
+						.HasColumnType("character varying(100)")
+						.HasColumnName("username");
 
-                    b.HasKey("Uid")
-                        .HasName("user_pk");
+					b.HasKey("Uid")
+						.HasName("user_pk");
 
-                    b.HasIndex("Aid");
+					b.HasIndex("Aid");
 
-                    b.HasIndex("Rid");
+					b.HasIndex("Rid");
 
-                    b.ToTable("user");
-                });
+					b.ToTable("user");
+				});
 
-            modelBuilder.Entity("ssoUM.DAL.Entities.App", b =>
-                {
-                    b.HasOne("ssoUM.DAL.Entities.Jwt", "JidNavigation")
-                        .WithMany("Apps")
-                        .HasForeignKey("Jid")
-                        .OnDelete(DeleteBehavior.SetNull)
-                        .HasConstraintName("app_fk");
+			modelBuilder.Entity("ssoUM.DAL.Entities.App", b =>
+				{
+					b.HasOne("ssoUM.DAL.Entities.Jwt", "JidNavigation")
+						.WithMany("Apps")
+						.HasForeignKey("Jid")
+						.OnDelete(DeleteBehavior.SetNull)
+						.HasConstraintName("app_fk");
 
-                    b.Navigation("JidNavigation");
-                });
+					b.Navigation("JidNavigation");
+				});
 
-            modelBuilder.Entity("ssoUM.DAL.Entities.Jwt", b =>
-                {
-                    b.HasOne("ssoUM.DAL.Entities.Key", "KidNavigation")
-                        .WithMany("Jwts")
-                        .HasForeignKey("Kid")
-                        .OnDelete(DeleteBehavior.SetNull)
-                        .HasConstraintName("jwt_fk");
+			modelBuilder.Entity("ssoUM.DAL.Entities.Jwt", b =>
+				{
+					b.HasOne("ssoUM.DAL.Entities.Key", "KidNavigation")
+						.WithMany("Jwts")
+						.HasForeignKey("Kid")
+						.OnDelete(DeleteBehavior.SetNull)
+						.HasConstraintName("jwt_fk");
 
-                    b.Navigation("KidNavigation");
-                });
+					b.Navigation("KidNavigation");
+				});
 
-            modelBuilder.Entity("ssoUM.DAL.Entities.Role", b =>
-                {
-                    b.HasOne("ssoUM.DAL.Entities.App", "AidNavigation")
-                        .WithMany("Roles")
-                        .HasForeignKey("Aid")
-                        .OnDelete(DeleteBehavior.SetNull)
-                        .HasConstraintName("role_t_app_fk");
+			modelBuilder.Entity("ssoUM.DAL.Entities.Role", b =>
+				{
+					b.HasOne("ssoUM.DAL.Entities.App", "AidNavigation")
+						.WithMany("Roles")
+						.HasForeignKey("Aid")
+						.OnDelete(DeleteBehavior.SetNull)
+						.HasConstraintName("role_t_app_fk");
 
-                    b.HasOne("ssoUM.DAL.Entities.Role", "RP")
-                        .WithMany("InverseRP")
-                        .HasForeignKey("RPid")
-                        .HasConstraintName("role_fk");
+					b.HasOne("ssoUM.DAL.Entities.Role", "RP")
+						.WithMany("InverseRP")
+						.HasForeignKey("RPid")
+						.HasConstraintName("role_fk");
 
-                    b.Navigation("AidNavigation");
+					b.Navigation("AidNavigation");
 
-                    b.Navigation("RP");
-                });
+					b.Navigation("RP");
+				});
 
-            modelBuilder.Entity("ssoUM.DAL.Entities.User", b =>
-                {
-                    b.HasOne("ssoUM.DAL.Entities.App", "AidNavigation")
-                        .WithMany("Users")
-                        .HasForeignKey("Aid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("user_fk");
+			modelBuilder.Entity("ssoUM.DAL.Entities.User", b =>
+				{
+					b.HasOne("ssoUM.DAL.Entities.App", "AidNavigation")
+						.WithMany("Users")
+						.HasForeignKey("Aid")
+						.OnDelete(DeleteBehavior.Cascade)
+						.IsRequired()
+						.HasConstraintName("user_fk");
 
-                    b.HasOne("ssoUM.DAL.Entities.Role", "RidNavigation")
-                        .WithMany("Users")
-                        .HasForeignKey("Rid")
-                        .HasConstraintName("user_t_role_fk");
+					b.HasOne("ssoUM.DAL.Entities.Role", "RidNavigation")
+						.WithMany("Users")
+						.HasForeignKey("Rid")
+						.HasConstraintName("user_t_role_fk");
 
-                    b.Navigation("AidNavigation");
+					b.Navigation("AidNavigation");
 
-                    b.Navigation("RidNavigation");
-                });
+					b.Navigation("RidNavigation");
+				});
 
-            modelBuilder.Entity("ssoUM.DAL.Entities.App", b =>
-                {
-                    b.Navigation("Roles");
+			modelBuilder.Entity("ssoUM.DAL.Entities.App", b =>
+				{
+					b.Navigation("Roles");
 
-                    b.Navigation("Users");
-                });
+					b.Navigation("Users");
+				});
 
-            modelBuilder.Entity("ssoUM.DAL.Entities.Jwt", b =>
-                {
-                    b.Navigation("Apps");
-                });
+			modelBuilder.Entity("ssoUM.DAL.Entities.Jwt", b =>
+				{
+					b.Navigation("Apps");
+				});
 
-            modelBuilder.Entity("ssoUM.DAL.Entities.Key", b =>
-                {
-                    b.Navigation("Jwts");
-                });
+			modelBuilder.Entity("ssoUM.DAL.Entities.Key", b =>
+				{
+					b.Navigation("Jwts");
+				});
 
-            modelBuilder.Entity("ssoUM.DAL.Entities.Role", b =>
-                {
-                    b.Navigation("InverseRP");
+			modelBuilder.Entity("ssoUM.DAL.Entities.Role", b =>
+				{
+					b.Navigation("InverseRP");
 
-                    b.Navigation("Users");
-                });
+					b.Navigation("Users");
+				});
 #pragma warning restore 612, 618
-        }
-    }
+		}
+	}
 }

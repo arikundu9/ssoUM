@@ -2,24 +2,24 @@
 namespace ssoUM.Utils;
 public class RestResponse<T>
 {
-    public bool Success { get; set; } = true;
-    public T? Data { get; set; }
-    public string Message { get; set; }
-    public List<object> Errors { get; set; }
-    public ResponseCode RespCode { get; set; } = ResponseCode.Success;
-    public RestResponse() { }
-    public RestResponse(ResponseCode respCode, string message)
-    {
-        RespCode = respCode;
-        Message = message;
-    }
-    public RestResponse<T> ErrMsg(string msg)
-    {
-        Success = false;
-        RespCode = ResponseCode.App_Server_Error;
-        Message = $"AppError ::: {msg}";
-        return this;
-    }
+	public bool Success { get; set; } = true;
+	public T? Data { get; set; }
+	public string Message { get; set; }
+	public List<object> Errors { get; set; }
+	public ResponseCode RespCode { get; set; } = ResponseCode.Success;
+	public RestResponse() { }
+	public RestResponse(ResponseCode respCode, string message)
+	{
+		RespCode = respCode;
+		Message = message;
+	}
+	public RestResponse<T> ErrMsg(string msg)
+	{
+		Success = false;
+		RespCode = ResponseCode.App_Server_Error;
+		Message = $"AppError ::: {msg}";
+		return this;
+	}
 }
 /*
 Response Code:

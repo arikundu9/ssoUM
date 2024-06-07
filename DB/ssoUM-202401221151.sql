@@ -7,16 +7,25 @@
 
 -- Started on 2024-01-22 11:51:42
 
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
+SET statement_timeout
+= 0;
+SET lock_timeout
+= 0;
+SET idle_in_transaction_session_timeout
+= 0;
+SET client_encoding
+= 'UTF8';
+SET standard_conforming_strings
+= on;
 SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
+SET check_function_bodies
+= false;
+SET xmloption
+= content;
+SET client_min_messages
+= warning;
+SET row_security
+= off;
 
 DROP DATABASE "ssoUM";
 --
@@ -24,28 +33,39 @@ DROP DATABASE "ssoUM";
 -- Name: ssoUM; Type: DATABASE; Schema: -; Owner: -
 --
 
-CREATE DATABASE "ssoUM" WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'English_India.1252';
+CREATE DATABASE "ssoUM" WITH TEMPLATE = template0
+ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'English_India.1252';
 
 
 \connect "ssoUM"
 
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
+SET statement_timeout
+= 0;
+SET lock_timeout
+= 0;
+SET idle_in_transaction_session_timeout
+= 0;
+SET client_encoding
+= 'UTF8';
+SET standard_conforming_strings
+= on;
 SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
+SET check_function_bodies
+= false;
+SET xmloption
+= content;
+SET client_min_messages
+= warning;
+SET row_security
+= off;
 
 --
 -- TOC entry 4 (class 2615 OID 2200)
 -- Name: public; Type: SCHEMA; Schema: -; Owner: -
 --
 
-CREATE SCHEMA public;
+CREATE SCHEMA
+public;
 
 
 --
@@ -57,19 +77,22 @@ CREATE SCHEMA public;
 COMMENT ON SCHEMA public IS 'standard public schema';
 
 
-SET default_tablespace = '';
+SET default_tablespace
+= '';
 
-SET default_table_access_method = heap;
+SET default_table_access_method
+= heap;
 
 --
 -- TOC entry 219 (class 1259 OID 75149)
 -- Name: app; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.app (
-    aid bigint NOT NULL,
-    redirecturl character varying(100) NOT NULL,
-    jid bigint
+CREATE TABLE public.app
+(
+	aid bigint NOT NULL,
+	redirecturl character varying(100) NOT NULL,
+	jid bigint
 );
 
 
@@ -92,7 +115,8 @@ CREATE SEQUENCE public.app_aid_seq
 -- Name: app_aid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.app_aid_seq OWNED BY public.app.aid;
+ALTER SEQUENCE public.app_aid_seq
+OWNED BY public.app.aid;
 
 
 --
@@ -100,10 +124,11 @@ ALTER SEQUENCE public.app_aid_seq OWNED BY public.app.aid;
 -- Name: jwt; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.jwt (
-    jid bigint NOT NULL,
-    description character varying(30) NOT NULL,
-    kid bigint
+CREATE TABLE public.jwt
+(
+	jid bigint NOT NULL,
+	description character varying(30) NOT NULL,
+	kid bigint
 );
 
 
@@ -126,7 +151,8 @@ CREATE SEQUENCE public.jwt_jid_seq
 -- Name: jwt_jid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.jwt_jid_seq OWNED BY public.jwt.jid;
+ALTER SEQUENCE public.jwt_jid_seq
+OWNED BY public.jwt.jid;
 
 
 --
@@ -134,12 +160,13 @@ ALTER SEQUENCE public.jwt_jid_seq OWNED BY public.jwt.jid;
 -- Name: keys; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.keys (
-    kid bigint NOT NULL,
-    type smallint NOT NULL,
-    private_key character varying NOT NULL,
-    public_key character varying,
-    algo character varying(30) NOT NULL
+CREATE TABLE public.keys
+(
+	kid bigint NOT NULL,
+	type smallint NOT NULL,
+	private_key character varying NOT NULL,
+	public_key character varying,
+	algo character varying(30) NOT NULL
 );
 
 
@@ -162,7 +189,8 @@ CREATE SEQUENCE public.keys_kid_seq
 -- Name: keys_kid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.keys_kid_seq OWNED BY public.keys.kid;
+ALTER SEQUENCE public.keys_kid_seq
+OWNED BY public.keys.kid;
 
 
 --
@@ -170,11 +198,12 @@ ALTER SEQUENCE public.keys_kid_seq OWNED BY public.keys.kid;
 -- Name: role; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.role (
-    rid bigint NOT NULL,
-    r_pid bigint,
-    role_code character varying(30) NOT NULL,
-    aid bigint
+CREATE TABLE public.role
+(
+	rid bigint NOT NULL,
+	r_pid bigint,
+	role_code character varying(30) NOT NULL,
+	aid bigint
 );
 
 
@@ -197,7 +226,8 @@ CREATE SEQUENCE public.role_rid_seq
 -- Name: role_rid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.role_rid_seq OWNED BY public.role.rid;
+ALTER SEQUENCE public.role_rid_seq
+OWNED BY public.role.rid;
 
 
 --
@@ -205,13 +235,14 @@ ALTER SEQUENCE public.role_rid_seq OWNED BY public.role.rid;
 -- Name: user; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public."user" (
-    uid bigint NOT NULL,
-    aid bigint NOT NULL,
-    rid bigint,
-    username character varying(100) NOT NULL,
-    password_hash character varying(100) NOT NULL,
-    password_salt character varying(100) NOT NULL
+CREATE TABLE public."user"
+(
+	uid bigint NOT NULL,
+	aid bigint NOT NULL,
+	rid bigint,
+	username character varying(100) NOT NULL,
+	password_hash character varying(100) NOT NULL,
+	password_salt character varying(100) NOT NULL
 );
 
 
@@ -234,7 +265,8 @@ CREATE SEQUENCE public.user_uid_seq
 -- Name: user_uid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.user_uid_seq OWNED BY public."user".uid;
+ALTER SEQUENCE public.user_uid_seq
+OWNED BY public."user".uid;
 
 
 --
@@ -242,7 +274,11 @@ ALTER SEQUENCE public.user_uid_seq OWNED BY public."user".uid;
 -- Name: app aid; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.app ALTER COLUMN aid SET DEFAULT nextval('public.app_aid_seq'::regclass);
+ALTER TABLE ONLY public.app
+ALTER COLUMN aid
+SET
+DEFAULT nextval
+('public.app_aid_seq'::regclass);
 
 
 --
@@ -250,7 +286,11 @@ ALTER TABLE ONLY public.app ALTER COLUMN aid SET DEFAULT nextval('public.app_aid
 -- Name: jwt jid; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.jwt ALTER COLUMN jid SET DEFAULT nextval('public.jwt_jid_seq'::regclass);
+ALTER TABLE ONLY public.jwt
+ALTER COLUMN jid
+SET
+DEFAULT nextval
+('public.jwt_jid_seq'::regclass);
 
 
 --
@@ -258,7 +298,11 @@ ALTER TABLE ONLY public.jwt ALTER COLUMN jid SET DEFAULT nextval('public.jwt_jid
 -- Name: keys kid; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.keys ALTER COLUMN kid SET DEFAULT nextval('public.keys_kid_seq'::regclass);
+ALTER TABLE ONLY public.keys
+ALTER COLUMN kid
+SET
+DEFAULT nextval
+('public.keys_kid_seq'::regclass);
 
 
 --
@@ -266,7 +310,11 @@ ALTER TABLE ONLY public.keys ALTER COLUMN kid SET DEFAULT nextval('public.keys_k
 -- Name: role rid; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.role ALTER COLUMN rid SET DEFAULT nextval('public.role_rid_seq'::regclass);
+ALTER TABLE ONLY public.role
+ALTER COLUMN rid
+SET
+DEFAULT nextval
+('public.role_rid_seq'::regclass);
 
 
 --
@@ -274,7 +322,11 @@ ALTER TABLE ONLY public.role ALTER COLUMN rid SET DEFAULT nextval('public.role_r
 -- Name: user uid; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public."user" ALTER COLUMN uid SET DEFAULT nextval('public.user_uid_seq'::regclass);
+ALTER TABLE ONLY public."user"
+ALTER COLUMN uid
+SET
+DEFAULT nextval
+('public.user_uid_seq'::regclass);
 
 
 --
@@ -368,7 +420,8 @@ SELECT pg_catalog.setval('public.user_uid_seq', 1, false);
 --
 
 ALTER TABLE ONLY public.app
-    ADD CONSTRAINT app_pk PRIMARY KEY (aid);
+ADD CONSTRAINT app_pk PRIMARY KEY
+(aid);
 
 
 --
@@ -377,7 +430,8 @@ ALTER TABLE ONLY public.app
 --
 
 ALTER TABLE ONLY public.jwt
-    ADD CONSTRAINT jwt_pk PRIMARY KEY (jid);
+ADD CONSTRAINT jwt_pk PRIMARY KEY
+(jid);
 
 
 --
@@ -386,7 +440,8 @@ ALTER TABLE ONLY public.jwt
 --
 
 ALTER TABLE ONLY public.keys
-    ADD CONSTRAINT keys_pk PRIMARY KEY (kid);
+ADD CONSTRAINT keys_pk PRIMARY KEY
+(kid);
 
 
 --
@@ -395,7 +450,8 @@ ALTER TABLE ONLY public.keys
 --
 
 ALTER TABLE ONLY public.role
-    ADD CONSTRAINT role_pk PRIMARY KEY (rid);
+ADD CONSTRAINT role_pk PRIMARY KEY
+(rid);
 
 
 --
@@ -404,7 +460,8 @@ ALTER TABLE ONLY public.role
 --
 
 ALTER TABLE ONLY public."user"
-    ADD CONSTRAINT user_pk PRIMARY KEY (uid);
+ADD CONSTRAINT user_pk PRIMARY KEY
+(uid);
 
 
 --
@@ -413,7 +470,10 @@ ALTER TABLE ONLY public."user"
 --
 
 ALTER TABLE ONLY public.app
-    ADD CONSTRAINT app_fk FOREIGN KEY (jid) REFERENCES public.jwt(jid) ON UPDATE CASCADE ON DELETE SET NULL;
+ADD CONSTRAINT app_fk FOREIGN KEY
+(jid) REFERENCES public.jwt
+(jid) ON
+UPDATE CASCADE ON DELETE SET NULL;
 
 
 --
@@ -422,7 +482,10 @@ ALTER TABLE ONLY public.app
 --
 
 ALTER TABLE ONLY public.jwt
-    ADD CONSTRAINT jwt_fk FOREIGN KEY (kid) REFERENCES public.keys(kid) ON UPDATE CASCADE ON DELETE SET NULL;
+ADD CONSTRAINT jwt_fk FOREIGN KEY
+(kid) REFERENCES public.keys
+(kid) ON
+UPDATE CASCADE ON DELETE SET NULL;
 
 
 --
@@ -431,7 +494,9 @@ ALTER TABLE ONLY public.jwt
 --
 
 ALTER TABLE ONLY public.role
-    ADD CONSTRAINT role_fk FOREIGN KEY (r_pid) REFERENCES public.role(rid);
+ADD CONSTRAINT role_fk FOREIGN KEY
+(r_pid) REFERENCES public.role
+(rid);
 
 
 --
@@ -440,7 +505,10 @@ ALTER TABLE ONLY public.role
 --
 
 ALTER TABLE ONLY public.role
-    ADD CONSTRAINT role_t_app_fk FOREIGN KEY (aid) REFERENCES public.app(aid) ON UPDATE CASCADE ON DELETE SET NULL;
+ADD CONSTRAINT role_t_app_fk FOREIGN KEY
+(aid) REFERENCES public.app
+(aid) ON
+UPDATE CASCADE ON DELETE SET NULL;
 
 
 --
@@ -449,7 +517,11 @@ ALTER TABLE ONLY public.role
 --
 
 ALTER TABLE ONLY public."user"
-    ADD CONSTRAINT user_fk FOREIGN KEY (aid) REFERENCES public.app(aid) ON UPDATE CASCADE ON DELETE CASCADE;
+ADD CONSTRAINT user_fk FOREIGN KEY
+(aid) REFERENCES public.app
+(aid) ON
+UPDATE CASCADE ON
+DELETE CASCADE;
 
 
 --
@@ -458,7 +530,9 @@ ALTER TABLE ONLY public."user"
 --
 
 ALTER TABLE ONLY public."user"
-    ADD CONSTRAINT user_t_role_fk FOREIGN KEY (rid) REFERENCES public.role(rid);
+ADD CONSTRAINT user_t_role_fk FOREIGN KEY
+(rid) REFERENCES public.role
+(rid);
 
 
 -- Completed on 2024-01-22 11:51:42

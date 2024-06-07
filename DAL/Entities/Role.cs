@@ -11,31 +11,31 @@ namespace ssoUM.DAL.Entities;
 [Index("RPid", Name = "IX_role_r_pid")]
 public partial class Role
 {
-    [Key]
-    [Column("rid")]
-    public long Rid { get; set; }
+	[Key]
+	[Column("rid")]
+	public long Rid { get; set; }
 
-    [Column("r_pid")]
-    public long? RPid { get; set; }
+	[Column("r_pid")]
+	public long? RPid { get; set; }
 
-    [Column("role_code")]
-    [StringLength(30)]
-    public string RoleCode { get; set; } = null!;
+	[Column("role_code")]
+	[StringLength(30)]
+	public string RoleCode { get; set; } = null!;
 
-    [Column("aid")]
-    public long? Aid { get; set; }
+	[Column("aid")]
+	public long? Aid { get; set; }
 
-    [ForeignKey("Aid")]
-    [InverseProperty("Roles")]
-    public virtual App? AidNavigation { get; set; }
+	[ForeignKey("Aid")]
+	[InverseProperty("Roles")]
+	public virtual App? AidNavigation { get; set; }
 
-    [InverseProperty("RP")]
-    public virtual ICollection<Role> InverseRP { get; } = new List<Role>();
+	[InverseProperty("RP")]
+	public virtual ICollection<Role> InverseRP { get; } = new List<Role>();
 
-    [ForeignKey("RPid")]
-    [InverseProperty("InverseRP")]
-    public virtual Role? RP { get; set; }
+	[ForeignKey("RPid")]
+	[InverseProperty("InverseRP")]
+	public virtual Role? RP { get; set; }
 
-    [InverseProperty("RidNavigation")]
-    public virtual ICollection<UserHasRole> UserHasRoles { get; } = new List<UserHasRole>();
+	[InverseProperty("RidNavigation")]
+	public virtual ICollection<UserHasRole> UserHasRoles { get; } = new List<UserHasRole>();
 }

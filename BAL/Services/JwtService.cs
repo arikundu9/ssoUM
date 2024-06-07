@@ -6,31 +6,31 @@ using ssoUM.DTOs;
 using ssoUM.Models;
 namespace ssoUM.BAL
 {
-    public class JwtService : IJwtService
-    {
-        private readonly IJwtRepo _JwtRepo;
-        private readonly IMapper _mapper;
-        public JwtService(IJwtRepo JwtRepo, IMapper mapper)
-        {
-            _JwtRepo = JwtRepo;
-            _mapper = mapper;
-        }
+	public class JwtService : IJwtService
+	{
+		private readonly IJwtRepo _JwtRepo;
+		private readonly IMapper _mapper;
+		public JwtService(IJwtRepo JwtRepo, IMapper mapper)
+		{
+			_JwtRepo = JwtRepo;
+			_mapper = mapper;
+		}
 
-        public async Task<IEnumerable<Jwt>?> getAll()
-        {
-            return await _JwtRepo.GetAsync(includeProperties: "Apps,KidNavigation");
-        }
+		public async Task<IEnumerable<Jwt>?> getAll()
+		{
+			return await _JwtRepo.GetAsync(includeProperties: "Apps,KidNavigation");
+		}
 
-        public async Task<long> Insert(JwtInsertDto jwt)
-        {
-            Jwt j = new()
-            {
-                Description = jwt.Description,
-                Kid = jwt.Kid
-            };
-            await _JwtRepo.AddAsync(j);
-            _JwtRepo.SaveChangesManaged();
-            return j.Jid;
-        }
-    }
+		public async Task<long> Insert(JwtInsertDto jwt)
+		{
+			Jwt j = new()
+			{
+				Description = jwt.Description,
+				Kid = jwt.Kid
+			};
+			await _JwtRepo.AddAsync(j);
+			_JwtRepo.SaveChangesManaged();
+			return j.Jid;
+		}
+	}
 }
